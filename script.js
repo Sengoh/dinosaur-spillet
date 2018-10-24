@@ -73,11 +73,10 @@ if(event.keyCode == 32) {
   myObstacles = [];
   score = 0;
 }
-
-
-
-
 })
+myGameArea.canvas.onclick = function() {//.addEventListener("click",function(event) {
+myGamePiece.jump()
+}
 //Spillerfigur
 function component(width, height, color, x, y, type) {
     this.type = type;
