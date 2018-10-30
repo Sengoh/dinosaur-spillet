@@ -1,10 +1,20 @@
 var myGamePiece;
 var hekker;
 var myObstacles = [];
+// var myMusic;
 
 //Variabler for score
 var score = 0
 var highscore = 0
+var spook = false
+var rush = false
+var poengMultiplier = 1;
+let scoreTracker = {
+  name: [],
+  score: []
+}
+
+var paused = false;
 
 var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
 
@@ -13,7 +23,10 @@ function startGame() {
     mySpookelse = new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image");
     //myGamePiece = new component(30, 30, "red", 20, 250);
     //myObstacles = new component(30, 60, "black", 120, 210);
+    // myMusic = new sound("https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/backgroundmusic.wav")
     myGameArea.start();
+    document.getElementById('canvasher').style.display = 'none';
+    window.location = loc;
 }
 
 // Spillområdet
@@ -35,7 +48,8 @@ var myGameArea = {
     }
 }
 var checkCollision = true;
-var myPowerUps = {
+/*var myPowerUps = [
+  {
   spOOkelse : function() {
     console.log("test");
 
@@ -46,7 +60,37 @@ var myPowerUps = {
     }, 5000);
 
   }
+},
+{
+  reeee: "reee"
 }
+];*/
+var myPowerUps = [
+//Spookelse
+function() {
+  console.log("test");
+
+  checkCollision = false;
+
+  setTimeout(function() {
+    checkCollision = true;
+  }, 5000);
+
+},
+//Poengrutsj
+function() {
+  poengMultiplier = 2;
+
+  setTimeout(function() {
+    poengMultiplier = 1;
+  }, 5000);
+},
+//Gullmynt
+function() {
+  poeng += 500
+}
+];
+var mySpawnedPowerUps = [];
 
   var crouched = false;
   document.addEventListener("keydown", function(event) {
@@ -73,10 +117,18 @@ if(event.keyCode == 32) {
   myObstacles = [];
   score = 0;
 }
+  if(event.keyCode == 80) {
+      if(paused == false) {
+        myGameArea.stop()
+        paused = true;
+      } else {
+        myGameArea.start();
+        paused = false;
+      }
+  }
+
+
 })
-myGameArea.canvas.onclick = function() {//.addEventListener("click",function(event) {
-myGamePiece.jump()
-}
 //Spillerfigur
 function component(width, height, color, x, y, type) {
     this.type = type;
@@ -112,6 +164,16 @@ function component(width, height, color, x, y, type) {
         text.fillStyle = "red"
         text.fillText("Score: " + score, 680, 70)
         text.fillText("Highscore: " + highscore,680,95)
+        if (spook == true) {
+          text.font = "30px Arial";
+          text.fillStyle = "red";
+          text.fillText("Boo!",200,200);
+        }
+        if (rush == true) {
+          text.font = "30px Arial";
+          text.fillStyle = "red";
+          text.fillText("Dobbelpoeng!!",200,200);
+        }
     }
     this.newPos = function() {
         this.gravitySpeed += this.gravity;
@@ -213,11 +275,15 @@ function updateGameArea() {
           myGamePiece.image.src = imageSrc + "steinbilkvadratopacity1.png?token=AqNcs2a1uzqH23gIz5Sy-ggbxmqcaF6gks5b2ar0wA%3D%3D";
         }
         console.log(myGamePiece.image.style.opacity);
-        myPowerUps.spOOkelse();
+        myPowerUps[1]();
 
-          text.font = "30px Arial";
-          text.fillStyle = "red";
-          text.fillText("Boo!",200,200);
+        spook = true
+
+        setTimeout(spooking,5000)
+
+        function spooking() {
+          spook = false
+        }
 
         mySpookelse = "";
       }
@@ -242,7 +308,7 @@ function updateGameArea() {
           lastTry = true
         },3000)
         if (lastTry == true){
-          score += 25;
+          score += 25*poengMultiplier;
           lastTry = false
         }
 
@@ -252,6 +318,7 @@ function updateGameArea() {
       if (myGamePiece.crashWith(myObstacles[i])) {
         myGameArea.stop();
         console.log("wat");
+        newHighscore()
 
         text.font = "30px Arial";
         text.fillStyle = "red";
@@ -270,7 +337,7 @@ function updateGameArea() {
 }
 
 let spawnRate = 0;
-setInterval(randomTimer, 1899)
+var startSpawn = setInterval(randomTimer, 1899)
 function randomTimer(){
 spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
 // spawnRate = (Math.random() * 3.3 + 2.2)*1000;
@@ -300,6 +367,12 @@ new component(
 )
 )
 }
+function spawnPowerup() {
+//console.log(spawnRate);
+  mySpawnedPowerUps.push(
+    new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image")
+  );
+}
 var textX = 200;
 function welcomeText() {
 y = 50;
@@ -307,4 +380,25 @@ textX -= 1;
 text.font = "30px Arial";
 text.fillStyle = "red";
 text.fillText("Stein JUMPer",textX,100);
+}
+
+function newHighscore(){
+  if (score >= highscore) {
+    var input = document.createElement("input");
+    var btn = document.createElement("button");
+    var btntxt = document.createTextNode("Send inn din highscore");
+    btn.appendChild(btntxt);
+    document.body.appendChild(input);
+    document.body.appendChild(btn)
+    input.setAttribute("type", "text")
+    btn.addEventListener('click', saveInput)
+
+    function saveInput(){
+      console.log("Button clicked")
+      scoreTracker.name.push(input.value)
+      scoreTracker.score.push(score)
+      console.log(scoreTracker.name, scoreTracker.score)
+
+    }
+  }
 }
