@@ -34,6 +34,14 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
   }
+  img{
+  transform-origin:50% 50%;
+  animation:2s rotateRight infinite linear;
+}
+
+@keyframes rotateRight{
+  100%{ transform:rotate(360deg); }
+}
 
   </style>
   <script src="script.js">
@@ -107,6 +115,9 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/new-age.min.js"></script>
+    <div id="scoreInput">
+      <h1> Hall of lame: </h1><br />
+    </div>
   </body>
 
 </html>

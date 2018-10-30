@@ -6,27 +6,24 @@ var myObstacles = [];
 //Variabler for score
 var score = 0
 var highscore = 0
-var spook = false
-var rush = false
 var poengMultiplier = 1;
-let scoreTracker = {
-  name: [],
-  score: []
-}
+
+//Variabler for tilbakemelding ved powerup
+var spook = false
+var powerMelding = "";
 
 var paused = false;
 
 var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
 
+// Starter spillet, definerer objekter
 function startGame() {
     myGamePiece = new component(60, 60, imageSrc + "steinbilkvadrat.png?token=AqNcsw7jrF4SvivyE77QEN8cojOZR3Ioks5b2aXFwA%3D%3D", 40, 500, "image");
-    mySpookelse = new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image");
+    //mySpookelse = new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image");
     //myGamePiece = new component(30, 30, "red", 20, 250);
     //myObstacles = new component(30, 60, "black", 120, 210);
     // myMusic = new sound("https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/backgroundmusic.wav")
     myGameArea.start();
-    document.getElementById('canvasher').style.display = 'none';
-    window.location = loc;
 }
 
 // Spillområdet
@@ -40,7 +37,7 @@ var myGameArea = {
         this.interval = setInterval(updateGameArea, 20);
     },
     stop : function() {
-        console.log("dsbisdbintervsdfisdfsdhsd")
+        console.log("Stopp")
         clearInterval(this.interval);
     },
     clear : function() {
@@ -66,9 +63,10 @@ var checkCollision = true;
 }
 ];*/
 var myPowerUps = [
+[
 //Spookelse
 function() {
-  console.log("test");
+  console.log("Spookelse kjører");
 
   checkCollision = false;
 
@@ -79,6 +77,7 @@ function() {
 },
 //Poengrutsj
 function() {
+  console.log("Dobbelt poeng kjører");
   poengMultiplier = 2;
 
   setTimeout(function() {
@@ -87,8 +86,15 @@ function() {
 },
 //Gullmynt
 function() {
-  poeng += 500
+  console.log("500 poeng gis");
+  score += 500
 }
+],
+[
+imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D",
+imageSrc + "x2.png?token=AFEP5VS9VIrNDqL3ni0xvE7eWfB92bN_ks5b4ZyBwA%3D%3D",
+imageSrc + "coin.png?token=AFEP5WjWPri6tyfpuMX1cDFuVWEGY1eDks5b4ZSJwA%3D%3D"
+]
 ];
 var mySpawnedPowerUps = [];
 
@@ -96,12 +102,12 @@ var mySpawnedPowerUps = [];
   document.addEventListener("keydown", function(event) {
   event.preventDefault()
   if(event.keyCode == 38 ) {
-
-    myGamePiece.jump()
     //hoppfunk
+    myGamePiece.jump()
   }
   if(event.keyCode == 40 ) {
     crouched = true;
+    //dukkfunk
     myGamePiece.crouch(crouched)
   }
 
@@ -129,8 +135,8 @@ if(event.keyCode == 32) {
 
 
 })
-//Spillerfigur
-function component(width, height, color, x, y, type) {
+//Alle objekter i spillet
+function component(width, height, color, x, y, type, powerup) {
     this.type = type;
     this.width = width;
     this.height = height;
@@ -144,6 +150,7 @@ function component(width, height, color, x, y, type) {
       this.image.src = color;
       this.image.opacity = 0.5;
     }
+    this.powerup = powerup;
 
     this.gravity = 0.25;
     this.gravitySpeed = 0;
@@ -167,12 +174,7 @@ function component(width, height, color, x, y, type) {
         if (spook == true) {
           text.font = "30px Arial";
           text.fillStyle = "red";
-          text.fillText("Boo!",200,200);
-        }
-        if (rush == true) {
-          text.font = "30px Arial";
-          text.fillStyle = "red";
-          text.fillText("Dobbelpoeng!!",200,200);
+          text.fillText(powerMelding,200,200);
         }
     }
     this.newPos = function() {
@@ -266,7 +268,7 @@ function updateGameArea() {
     myGameArea.clear();
     myGamePiece.newPos();
     myGamePiece.update();
-    if(mySpookelse != "") {
+    /*if(mySpookelse != "") {
       mySpookelse.update();
       mySpookelse.x -= 2;
       if (myGamePiece.pickUp(mySpookelse)) {
@@ -275,7 +277,7 @@ function updateGameArea() {
           myGamePiece.image.src = imageSrc + "steinbilkvadratopacity1.png?token=AqNcs2a1uzqH23gIz5Sy-ggbxmqcaF6gks5b2ar0wA%3D%3D";
         }
         console.log(myGamePiece.image.style.opacity);
-        myPowerUps[1]();
+        myPowerUps[2]();
 
         spook = true
 
@@ -287,7 +289,7 @@ function updateGameArea() {
 
         mySpookelse = "";
       }
-    }
+    }*/
     //console.log(myGamePiece.image.style.opacity);
     if(score > highscore) {
       highscore = score
@@ -314,10 +316,40 @@ function updateGameArea() {
 
       }
     }
+    for (let i = 0; i < mySpawnedPowerUps.length; i += 1) {
+      if(mySpawnedPowerUps[i] != 0) {
+        mySpawnedPowerUps[i].x -= 2;
+        mySpawnedPowerUps[i].update();
+        if(mySpawnedPowerUps[i].x < -50) {
+          mySpawnedPowerUps[i].x = -100;
+        }
+        if (myGamePiece.pickUp(mySpawnedPowerUps[i])) {
+          console.log(myGamePiece.image.style.opacity);
+          var currentPowerup = mySpawnedPowerUps[i].powerup;
+          console.log(currentPowerup);
+          myPowerUps[0][currentPowerup]();
+          if(mySpawnedPowerUps[i].powerup == 0) {
+            powerMelding = "Boo!";
+          } else if(mySpawnedPowerUps[i].powerup == 1) {
+            powerMelding = "x2 Poeng!";
+          } else if(mySpawnedPowerUps[i].powerup == 2) {
+            powerMelding = "500 BONUS!";
+          }
+          spook = true
+          setTimeout(spooking,5000)
+
+          function spooking() {
+            spook = false
+          }
+
+          mySpawnedPowerUps[i] = "";
+        }
+      }
+    }
     for (let i = 0; i < myObstacles.length; i += 1) {
       if (myGamePiece.crashWith(myObstacles[i])) {
         myGameArea.stop();
-        console.log("wat");
+        console.log("Krasj");
         newHighscore()
 
         text.font = "30px Arial";
@@ -367,10 +399,23 @@ new component(
 )
 )
 }
+var startSpawn = setInterval(randomPowerup, 14899)
+function randomPowerup(){
+//spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
+// spawnRate = (Math.random() * 3.3 + 2.2)*1000;
+let test2 = (Math.random() * (15-10)+10) * 1000
+// spawnRate = (Math.floor(Math.random() * (3)) + 3);
+console.log("Spawnrate "+spawnRate);
+console.log("testytest: "+test2)
+window.setTimeout(spawnPowerup, test2)
+}
+//spawnPowerup();
 function spawnPowerup() {
-//console.log(spawnRate);
+console.log("eyy");
+var powerup = Math.floor(Math.random()*myPowerUps[0].length);
+console.log(powerup);
   mySpawnedPowerUps.push(
-    new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image")
+    new component(60,60, myPowerUps[1][powerup], 960, 200, "image", powerup)
   );
 }
 var textX = 200;
@@ -383,22 +428,29 @@ text.fillText("Stein JUMPer",textX,100);
 }
 
 function newHighscore(){
-  if (score >= highscore) {
-    var input = document.createElement("input");
-    var btn = document.createElement("button");
-    var btntxt = document.createTextNode("Send inn din highscore");
-    btn.appendChild(btntxt);
-    document.body.appendChild(input);
-    document.body.appendChild(btn)
-    input.setAttribute("type", "text")
-    btn.addEventListener('click', saveInput)
+  if (score >= highscore && score != 0) {
+    // var input = document.createElement("input");
+    // var btn = document.createElement("button");
+    // var btntxt = document.createTextNode("Send inn din highscore!");
+    // var name = prompt("Gratulerer! Du har fått en ny highscore! Skriv inn ditt navn:", "Navn")
+    // btn.appendChild(btntxt);
+    // document.body.appendChild(input);
+    // document.body.appendChild(btn)
+    // input.setAttribute("type", "text")
+    // input.setAttribute("autofocus", "")
+    // btn.addEventListener('click', saveInput)
+    //
+    // function saveInput(){
+    //   console.log("Button clicked")
+    //   scoreTracker.name.push(input.value)
+    //   scoreTracker.score.push(score)
+    //   console.log(scoreTracker.name, scoreTracker.score)
+    //   var scoreinput = document.getElementById("scoreInput");
+      var text = name + ", med score " + score + "!<br />";
+      document.getElementById("scoreInput").innerHTML += text
+    //   input.remove(0)
+    //   btn.remove(0)
 
-    function saveInput(){
-      console.log("Button clicked")
-      scoreTracker.name.push(input.value)
-      scoreTracker.score.push(score)
-      console.log(scoreTracker.name, scoreTracker.score)
-
-    }
+    // }
   }
 }
