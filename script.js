@@ -175,7 +175,7 @@ var myGamePiece;
             console.log(this.y)
             // this.gravity = -0.25
             if(this.type == "image") {
-                this.image.src = imageSrc + "steinbilkvadrat.png?token=AqNcsw7jrF4SvivyE77QEN8cojOZR3Ioks5b2aXFwA%3D%3D";
+                this.image.src = imageSrc + "steinbilkvadrat.png?token=AFEP5USMN9Bu3hLnHaz-1xaTeoJ1Qg8mks5b42cAwA%3D%3D";
             }
             if(this.y >= 480) {
               this.gravity = -2.5
