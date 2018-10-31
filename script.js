@@ -76,7 +76,7 @@ var myGamePiece;
     }
   ],
   [
-    imageSrc + "ghost.png?token=AFEP5ddw8rtbR6sC0NLcu55TdSmTlGIsks5b42cowA%3D%3D",
+    imageSrc + "ghost.png?token=AFEP5U52lkqJJMQECoLXrYoybxwsZE63ks5b42gHwA%3D%3D",
     imageSrc + "x2.png?token=AFEP5cpH0hV2MCsCtE-pXpsPdbJL4yILks5b42dWwA%3D%3D",
     imageSrc + "coin.png?token=AFEP5W5ebNL69cST5VLbW_3ZoAvE81rgks5b42dEwA%3D%3D"
   ]
