@@ -12,7 +12,7 @@ var myGamePiece;
     var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
     // Starter spillet, definerer objekter
     function startGame() {
-        myGamePiece = new component(60, 60, imageSrc + "steinbilkvadrat.png?token=AqNcsw7jrF4SvivyE77QEN8cojOZR3Ioks5b2aXFwA%3D%3D", 40, 500, "image");
+        myGamePiece = new component(60, 60, imageSrc + "steinbilkvadrat.png?token=AFEP5USMN9Bu3hLnHaz-1xaTeoJ1Qg8mks5b42cAwA%3D%3D", 40, 500, "image");
         //mySpookelse = new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image");
         //myGamePiece = new component(30, 30, "red", 20, 250);
         //myObstacles = new component(30, 60, "black", 120, 210);
@@ -76,9 +76,9 @@ var myGamePiece;
     }
   ],
   [
-    imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D",
-    imageSrc + "x2.png?token=AFEP5U_OxMht9Dfde1oMRD6ynXg6W9yWks5b4Z9WwA%3D%3D",
-    imageSrc + "coin.png?token=AFEP5WjWPri6tyfpuMX1cDFuVWEGY1eDks5b4ZSJwA%3D%3D"
+    imageSrc + "ghost.png?token=AFEP5ddw8rtbR6sC0NLcu55TdSmTlGIsks5b42cowA%3D%3D",
+    imageSrc + "x2.png?token=AFEP5cpH0hV2MCsCtE-pXpsPdbJL4yILks5b42dWwA%3D%3D",
+    imageSrc + "coin.png?token=AFEP5W5ebNL69cST5VLbW_3ZoAvE81rgks5b42dEwA%3D%3D"
   ]
 ];
   var mySpawnedPowerUps = [];
@@ -187,7 +187,7 @@ var myGamePiece;
           if(crouched) {
             if(this.y == 480) {
               if(this.type == "image") {
-                  this.image.src = imageSrc + "steinbilcrouch2kvadrat.png?token=AqNcs5-htIKkqYkKhKD8kc1YBxYvKJA2ks5b2aXHwA%3D%3D";
+                  this.image.src = imageSrc + "steinbilcrouch2kvadrat.png?token=AFEP5a3pLnb6-Ou3vbgdEYBZNaLEfwcDks5b42d9wA%3D%3D";
               }
               this.height = 30;
               this.y = this.y+30;
@@ -195,7 +195,7 @@ var myGamePiece;
           } else if (crouched == false) {
             this.height = 60;
             if(this.type == "image") {
-                this.image.src = imageSrc + "steinbilkvadrat.png?token=AqNcsw7jrF4SvivyE77QEN8cojOZR3Ioks5b2aXFwA%3D%3D";
+                this.image.src = imageSrc + "steinbilkvadrat.png?token=AFEP5USMN9Bu3hLnHaz-1xaTeoJ1Qg8mks5b42cAwA%3D%3D";
             }
           }
         }
@@ -327,7 +327,7 @@ var myGamePiece;
           }
         }
         if(score >= 1000) {
-          myGameArea.canvas.style.backgroundImage = "url(" +imageSrc + "level2.png?token=AFEP5a_I4MSb3AAi4RFJ_lzo4lZSmNeCks5b2a0nwA%3D%3D)";
+          myGameArea.canvas.style.backgroundImage = "url(" +imageSrc + "level2.png?token=AFEP5etxkBlvwdLJx1-wWqWZrXHtKF2gks5b42eewA%3D%3D)";
         }
     }
     let spawnRate = 0;
