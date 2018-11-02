@@ -34,7 +34,7 @@
   vil spillet få godkjennelse til å autoplaye en bakgrunnsmusikk. Bakgrunnsmusikken fungerer i Firefox og Chrome.
     Spillet fungerer derimot ikke i Edge, det er flere funksjoner som ikke fungerer i Edge. -->
 
-    <audio autoplay loop>
+    <audio autoplay loop id="music">
       <source src="backgroundmusic2.mp3" type="audio/mp3">
         <source src="backgroundmusic.wav" type="audio/wav">
     </audio>
@@ -555,12 +555,25 @@
             // }
           }
         }
+      let counter = 0;
+        function toggleMute(){
+          counter++
+            let music = document.getElementById("music")
+            music.volume = 0.0;
+            // music.setAttribute("volume","0.0")
+            console.log(music.volume);
+            if (counter >= 1) {
+              counter = 0;
+              music.volume = 1.0;
+            }
+          }
 
     </script>
 
   <div id="scoreInput">
     <h1> Hall of lame: </h1><br />
   </div>
+  <button onclick="toggleMute()">Skru av eller på musikk</button>
 
   </body>
 
