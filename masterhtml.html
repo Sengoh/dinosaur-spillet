@@ -28,9 +28,17 @@
   </script>-->
   <body onload="startGame()">
 
-    <audio controls autoplay loop>
-      <source src="backgroundmusic.wav" type="audio/wav">
+    <!-- <iframe src="backgroundmusic.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
+
+    <!-- Denne trengs fordi chrome vil blokkere autoplay som en standard funksjon. Med denne iframen
+  vil spillet få godkjennelse til å autoplaye en bakgrunnsmusikk. Bakgrunnsmusikken fungerer i Firefox og Chrome.
+    Spillet fungerer derimot ikke i Edge, det er flere funksjoner som ikke fungerer i Edge. -->
+
+    <audio autoplay loop>
+      <source src="backgroundmusic2.mp3" type="audio/mp3">
+        <source src="backgroundmusic.wav" type="audio/wav">
     </audio>
+    <!-- https://www.dl-sounds.com/royalty-free/off-limits/ -->
 
     <script type="text/javascript">
     var myGamePiece;
@@ -150,6 +158,7 @@
           tilesNr = 0;
           mySpawnedPowerUps = [];
           score = 0;
+          myGameArea.canvas.style.backgroundImage = "url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png)";
         }
           if(event.keyCode == 80) { //P, setter spillet på pause
               if(paused == false) {
@@ -161,7 +170,7 @@
               }
           }
         })
-        //Alle objekter i spillet, både steinbilen og obstacles
+        //Funksjon for å lage alle objekter i spillet, både steinbilen og obstacles
         function component(width, height, color, x, y, type, powerup) {
             this.type = type;
             this.width = width;
@@ -421,6 +430,7 @@
             }
             if(score >= 1000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
+
             }
         }
         let spawnRate = 0;
