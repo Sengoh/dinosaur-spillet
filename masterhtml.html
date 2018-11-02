@@ -118,9 +118,10 @@
           console.log("500 poeng gis");
           score += 500
         },
-        //Powerup
+        //Olsø
         function() {
-
+          console.log("250 poeng tas")
+          score -= 250
         }
       ],
       [
@@ -325,10 +326,6 @@
               }
             }*/
             //console.log(myGamePiece.image.style.opacity);
-            //Bestemmer highscore
-            if(score > highscore) {
-              highscore = score
-            }
             //Forloop som stopper objectene da de går ut av canvasen slik at de ikke fortsetter i evigheten
             for (let i = 0; i < myObstacles.length; i += 1) {
               if(myObstacles[i] != "") {
@@ -400,6 +397,9 @@
                   } else if(mySpawnedPowerUps[i].powerup == 2) {
                     powerMelding = "500 BONUS!";
                     spook = true
+                  } else if(mySpawnedPowerUps[i].powerup == 3) {
+                    powerMelding = "Å nei, Atle tok 250 poeng!";
+                    spook = true
                   }
 
                   setTimeout(spooking,5000) //Hvor lenge man får tilbakemelding dersom man har plukket opp en powerup
@@ -417,6 +417,10 @@
             for (let i = 0; i < myObstacles.length; i += 1) {
               if (myGamePiece.crashWith(myObstacles[i])) {
                 myGameArea.stop();
+                  //Bestemmer highscore
+               if(score > highscore) {
+              highscore = score
+               }
                 console.log("Krasj");
                 newHighscore()
                 text.font = "30px Arial";
