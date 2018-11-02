@@ -564,11 +564,12 @@
           counter++
             let music = document.getElementById("music")
             music.volume = 0.0;
+            document.getElementById("muteBtn").innerHTML = "&#x1F507;";
             // music.setAttribute("volume","0.0")
-            console.log(music.volume);
             if (counter >= 2) {
               counter = 0;
               music.volume = 1.0;
+              document.getElementById("muteBtn").innerHTML = "&#128266;";
             }
           }
 
@@ -577,7 +578,7 @@
   <div id="scoreInput">
     <h1> Hall of lame: </h1><br />
   </div>
-  <button onclick="toggleMute()">Skru av eller på musikk</button>
+  <button id="muteBtn" onclick="toggleMute()">&#128266;</button>
 
   </body>
 
