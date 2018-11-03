@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
+        <title>Chronicles of Stein the Jumper</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom fonts for this template -->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+        <!-- Plugin CSS -->
+        <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="css/new-age.min.css" rel="stylesheet">
+  </head>
+  <style>
+  canvas {
+      border:1px solid #d3d3d3;
+      background-color: #f1f1f1;
+      background-image: url(https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/184b5593c320f0cad0aeceb003a16c7605d8f2bb/spillbakgrunn.png?token=AqNcs3XQ4CYcIG8qnyg-_6RT-SPD2ehdks5b2ZPIwA%3D%3D);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+  }
+  img{
+  transform-origin:50% 50%;
+  animation:2s rotateRight infinite linear;
+}
+
+@keyframes rotateRight{
+  100%{ transform:rotate(360deg); }
+}
+
+  </style>
+  <script src="script.js">
+
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <body onload="startGame()" id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Chronicles of Stein the Jumper</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Side1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">Side2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Side3</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+            <div class="header-content mx-auto">
+              <h1 class="mb-5">Tekst her, dette er historien om de tre små fisk</h1>
+              <p>CSS LIGGER PÅ HENRIK SIN PC<p>
+              <p class="mb-2">Som endte sine dager i en fiskehandlerdisk<p>
+              <a href="#" class="btn btn-outline btn-xl js-scroll-trigger">Spill her!</a>
+            </div>
+
+          <div class="col-lg-5 my-auto">
+        </div>
+        </div>
+      </div>
+    </header>
+
+    <footer>
+      <div class="container">
+        <p>&copy; Your Website 2018. All Rights Reserved.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#">Side1</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Side2</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Side3</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+    <div id="scoreInput">
+      <h1> Hall of lame: </h1><br />
+    </div>
+  </body>
+
+</html>
