@@ -42,7 +42,7 @@
   <!--<script src="script.js">
 
   </script>-->
-  <body id="page-top" onload="startGame()">
+  <body id="page-top">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
@@ -90,7 +90,7 @@
       </div>
     </header>
 
-  <!--     <script>
+  <script>
         // Viser spillet og skjuler <body> når du trykker på knappen.
         window.onload = function() {
           document.getElementById('download').style.display = 'none';
@@ -102,7 +102,7 @@
           }
         }
 
-      </script> -->
+      </script>
 
     <section id="download" class="download bg-primary text-center">
       <div class="container h-50">
@@ -203,20 +203,7 @@
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             }
         }
-        /*var myPowerUps = [
-          {
-          spOOkelse : function() {
-            console.log("test");
-            checkCollision = false;
-            setTimeout(function() {
-              checkCollision = true;
-            }, 5000);
-          }
-        },
-        {
-          reeee: "reee"
-        }
-      ];*/
+
       var myPowerUps = [
         [
         //Spookelse
@@ -230,7 +217,7 @@
         //Poengrutsj
         function() {
           console.log("Dobbelt poeng kjører");
-          poengMultiplier = 2;
+          poengMultiplier = 20;
           setTimeout(function() {
             poengMultiplier = 1;
           }, 10000);
@@ -238,7 +225,7 @@
         //Gullmynt
         function() {
           console.log("500 poeng gis");
-          score += 500
+          score += 1000
         },
         //Olsø
         function() {
@@ -434,25 +421,6 @@
             myGameArea.clear();
             myGamePiece.newPos();
             myGamePiece.update();
-            /*if(mySpookelse != "") {
-              mySpookelse.update();
-              mySpookelse.x -= 2;
-              if (myGamePiece.pickUp(mySpookelse)) {
-                if(myGamePiece.type == "image") {
-                  myGamePiece.image.style.opacity = 0.1;
-                  myGamePiece.image.src = imageSrc + "steinbilkvadratopacity1.png?token=AqNcs2a1uzqH23gIz5Sy-ggbxmqcaF6gks5b2ar0wA%3D%3D";
-                }
-                console.log(myGamePiece.image.style.opacity);
-                myPowerUps[2]();
-                spook = true
-                setTimeout(spooking,5000)
-                function spooking() {
-                  spook = false
-                }
-                mySpookelse = "";
-              }
-            }*/
-            //console.log(myGamePiece.image.style.opacity);
             //Forloop som stopper objectene da de går ut av canvasen slik at de ikke fortsetter i evigheten
             for (let i = 0; i < myObstacles.length; i += 1) {
               if(myObstacles[i] != "") {
@@ -460,9 +428,6 @@
                 myObstacles[i].update();
                 if(myObstacles[i].x < -40) {
                   myObstacles[i] = "";
-                  //delete myObstacles[i];
-                  //  myObstacles.splice(i,1);
-                  //console.log(myObstacles[2].x);
                 }
               }
               //Gir brukeren poeng dersom spillfiguren har passert en obstacle
@@ -483,24 +448,10 @@
                   myTiles2[i][j].update();
                   if(myTiles2[i][j].x < -40) {
                     myTiles2[i][j] = "";
-                    //delete myTiles2[i][j];
-                    // myTiles[i][j].splice(i,1);
-                    //console.log(myTiles[0][1].x);
                   }
                 }
               }
             }
-              //Gir brukeren poeng dersom spillfiguren har passert en obstacle
-              /*if(myObstacles[i].x < myGamePiece.x+3 && myObstacles[i].x > myGamePiece.x-3) {
-                setTimeout(function(){
-                  lastTry = true
-                },3000)
-                if (lastTry == true){
-                  score += 25*poengMultiplier;
-                  lastTry = false
-                }
-              }*/
-
             //Opretter obstacles og sender dem mot spillfiguren
             for (let i = 0; i < mySpawnedPowerUps.length; i += 1) {
               if(mySpawnedPowerUps[i] != "") {
@@ -564,7 +515,30 @@
             } else if(score >= 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
             }
+          /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
+            myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
+            console.log("juan");
+            setTimeout(function() {
+              console.log("reeee");
+            },3000)*/
+            //light = setInterval(checkScore, 3000);
+            //setTimeout(function(){light=0;},5000);
         }
+        /* For later
+        var light = 0;
+        if(score <= 2000) {
+          setInterval(function() {
+            if(light >= 0 && light <= 2) {
+              myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
+              myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
+              light++;
+            } else if (light == 2) {
+              myGameArea.context.fillStyle = "rgba(255,255,255,0)";
+              myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
+              light = 0;
+            }
+          },3000)
+        }*/
         let spawnRate = 0;
         var myTiles = [
 
@@ -636,10 +610,7 @@
 
 
         function randomPowerup(){
-        //spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
-        // spawnRate = (Math.random() * 3.3 + 2.2)*1000;
         let test2 = (Math.random() * (15-10)+10) * 1000
-        // spawnRate = (Math.floor(Math.random() * (3)) + 3);
         console.log("Spawnrate "+spawnRate);
         window.setTimeout(spawnPowerup, test2)
         }
