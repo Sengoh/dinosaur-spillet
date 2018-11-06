@@ -5,8 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Spillprosjekt">
+    <meta name="author" content="Gruppe 27 IDRI">
 
     <title>Chronicles of Stein the Jumper</title>
 
@@ -18,70 +18,113 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 
     <!-- Custom styles for this template -->
     <link href="css/new-age.min.css" rel="stylesheet">
     <script src="script.js"></script>
   </head>
 
+
+
   <body id="page-top">
-    <style media="screen">
-    img{
-    transform-origin:50% 50%;
-    animation:2s rotateRight infinite linear;
-    }
 
-    @keyframes rotateRight{
-    100%{ transform:rotate(360deg); }
-    }
-
-    </style>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background:black">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Chronicles of Stein the Jumper</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+      <div class="container" style="padding-bottom:5px;">
+        <img href="#page-top" onclick="history.go(0)" src="hjæm.png" width="3%">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+              Menu
+              <i class="fas fa-bars"></i>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="padding-top:5px">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="https://github.com/Sengoh/dinosaur-spillet" target="_blank">GitHub</a>
+              <a class="nav-link js-scroll-trigger">Spill spillet</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Side2</a>
+              <a class="nav-link js-scroll-trigger" href="https://github.com/Sengoh/dinosaur-spillet">Github</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Side3</a>
-            </li>
-          </ul>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+
+              <li class="nav-item dropdown">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Medvirkende<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item"><a href="#">Henrik Hove Eide</a></li>
+                  <li class="dropdown-item"><a href="#">Anders Balsvik</a></li>
+                  <li class="dropdown-item"><a href="#">Erlend Saugstad</a></li>
+                  <li class="dropdown-item"><a href="#">Steinar Vrenne</a></li>
+                  <li class="dropdown-item"><a href="#">Sivert Hognes</a></li>
+                </ul>
+              </li>
         </div>
-      </div>
     </nav>
 
     <header class="masthead" id="canvasher">
       <div class="container h-100">
         <div class="row h-100">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">Stein er på jakt etter et lønnspåslag</h1>
-              <p class="mb-2">Men NTNU's rektor vil gjøre alt han kan for å hindre Stein, kan du hjelpe han?<p>
-              <a href="#" class="btn btn-outline btn-xl js-scroll-trigger" onclick="startGame()">Spill her!</a>
-            </div>
-          <div class="col-lg-5 my-auto" align="right"> <img src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Stein er på jakt etter et lønnspålegg</h1>
+            <p class="mb-2">Men NTNU's rektor vil gjøre alt han kan for å hindre Stein, kan du hjelpe han?
+              <p>
+                <button class="btn btn-outline btn-xl js-scroll-trigger" id="startspill" name="start">Spill her!</button>
+          </div>
+          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>
         </div>
       </div>
     </header>
 
+    <script>
+      // Viser spillet og skjuler <body> når du trykker på knappen.
+      window.onload = function() {
+        document.getElementById('download').style.display = 'none';
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          startGame();
+        }
+      }
+
+    </script>
+
+    <section id="download" class="download bg-primary text-center">
+      <div class="container h-50">
+        <div class="row h-70">
+          <h1 class="container" style="text-align: left">Hvordan spille Stein JUMPer</h1>
+          <div class="container" width="100%"><br>
 
 
+            <div class="pull-left"><img src="piltaster.png" alt="Piltaster" width="80px" height="40px">
+              <p style="vertical-align: text-top;">Pil opp for å hoppe, pil ned for å dukke</p>
+            </div>
+            <div class="pull-left"><img src="spacebar.png" width="80px" height="40px">
+              <p style="vertical-align: text-top;">Trykk spacebar for å restarte spillet</p>
+            </div>
+            <div class="pull-left"><img src="Pkey.png" width="40px" height="40px">
+              <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
+            </div>
+            <div class="pull-left">
+              <img src="bilder/ghost.png" width="10px" heigh="10px">
+              <img src="bilder/x2.png" width="10px" heigh="10px">
+              <img src="bilder/coin.png" width="10px" heigh="10px">
+              <img src="bilder/tyv.png" width="10px" heigh="10px">
+              <p style="vertical-align: text-top;">Samle powerups!</p>
+            <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
+            <!--https://www.techonthenet.com/clipart/keyboard/space_key_s.php, bilde av spacebar-->
+
+
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
+        <p>&copy; Gruppe 27 IDRI. All Rights Reserved.</p>
         <ul class="list-inline">
           <li class="list-inline-item">
             <a href="#">Side1</a>
@@ -99,14 +142,10 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
+    <!-- Custom CSS -->
     <script src="js/new-age.min.js"></script>
-
-
 
   </body>
 
