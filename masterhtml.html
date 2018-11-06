@@ -2,30 +2,150 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Spillprosjekt">
+    <meta name="author" content="Gruppe 27 IDRI">
+
+    <title>Chronicles of Stein the Jumper</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/new-age.min.css" rel="stylesheet">
+    <!--<script src="script.js"></script>-->
 
   </head>
   <!--<div id="steinspin"><img src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>-->
   <style>
-  canvas {
+    canvas {
       border:1px solid #d3d3d3;
       background-color: #f1f1f1;
       background-image: url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
-  }
-  img{
-  transform-origin:50% 50%;
-  animation:2s rotateRight infinite linear;
-}
-@keyframes rotateRight{
-  100%{ transform:rotate(360deg); }
-}
+    }
+    #steinspin{
+      transform-origin:50% 50%;
+      animation:2s rotateRight infinite linear;
+    }
+    @keyframes rotateRight{
+      100%{ transform:rotate(360deg); }
+    }
   </style>
   <!--<script src="script.js">
 
   </script>-->
-  <body onload="startGame()">
+  <body id="page-top" onload="startGame()">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+      <div class="container" style="padding-bottom:5px;">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="padding-top:5px">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger">Spill spillet</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="https://github.com/Sengoh/dinosaur-spillet">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+
+              <li class="nav-item dropdown">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Medvirkende<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-item"><a href="#">Henrik Hove Eide</a></li>
+                  <li class="dropdown-item"><a href="#">Anders Balsvik</a></li>
+                  <li class="dropdown-item"><a href="#">Erlend Saugstad</a></li>
+                  <li class="dropdown-item"><a href="#">Steinar Vrenne</a></li>
+                  <li class="dropdown-item"><a href="#">Sivert Hognes</a></li>
+                </ul>
+              </li>
+        </div>
+    </nav>
+
+    <header class="masthead" id="canvasher">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Stein er på jakt etter et lønnspålegg</h1>
+            <p class="mb-2">Men NTNU's rektor vil gjøre alt han kan for å hindre Stein, kan du hjelpe han?
+              <p>
+                <button class="btn btn-outline btn-xl js-scroll-trigger" id="startspill" name="start">Spill her!</button>
+          </div>
+          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>
+        </div>
+      </div>
+    </header>
+
+  <!--     <script>
+        // Viser spillet og skjuler <body> når du trykker på knappen.
+        window.onload = function() {
+          document.getElementById('download').style.display = 'none';
+          document.getElementById('startspill').onclick = () => {
+            document.getElementById('canvasher').style.display = 'none';
+            document.getElementById('mainNav').style.backgroundColor = 'black';
+            document.getElementById('download').style.display = 'block';
+            startGame();
+          }
+        }
+
+      </script> -->
+
+    <section id="download" class="download bg-primary text-center">
+      <div class="container h-50">
+        <div class="row h-70">
+          <h1 class="container" style="text-align: left">Hvordan spille Stein JUMPer</h1>
+          <div class="container" width="100%"><br>
+
+
+            <div class="pull-left"><img src="piltaster.png" alt="Piltaster" width="80px" height="40px">
+              <p style="vertical-align: text-top;">Pil opp for å hoppe, pil ned for å dukke</p>
+            </div>
+            <div class="pull-left"><img src="spacebar.png" width="80px" height="40px">
+              <p style="vertical-align: text-top;">Trykk spacebar for å restarte spillet</p>
+            </div>
+            <div class="pull-left"><img src="Pkey.png" width="40px" height="40px">
+              <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
+            </div>
+            <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
+            <!--https://www.techonthenet.com/clipart/keyboard/space_key_s.php, bilde av spacebar-->
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; Gruppe 27 IDRI. All Rights Reserved.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#">Side1</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Side2</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#">Side3</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
 
     <!-- <iframe src="backgroundmusic.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
 
@@ -35,13 +155,13 @@
 
     <audio autoplay loop id="music">
       <source src="backgroundmusic2.mp3" type="audio/mp3">
-        <source src="backgroundmusic.wav" type="audio/wav">
+      <source src="backgroundmusic.wav" type="audio/wav">
     </audio>
     <!-- https://www.dl-sounds.com/royalty-free/off-limits/ -->
 
     <script type="text/javascript">
     //Variabler
-    var myGamePiece;
+        var myGamePiece;
         var hekker;
         var myObstacles = [];
         //Variabler for score
@@ -54,6 +174,7 @@
         var powerMelding = "";
         var paused = false;
         var checkCollision = true;
+        var gameRunning = true
         var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
         // Starter spillet, definerer objekter
         function startGame() {
@@ -76,6 +197,7 @@
             stop : function() {
                 console.log("Stopp")
                 clearInterval(this.interval);
+                gameRunning = false;
             },
             clear : function() {
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -135,7 +257,9 @@
           var crouched = false;
           //Registrerer om brukeren trykker på opp eller ned
           document.addEventListener("keydown", function(event) {
-          event.preventDefault()
+            if (gameRunning) {
+                event.preventDefault()
+            }
           if(event.keyCode == 38 ) { //Piltast opp
             //hoppfunk
             myGamePiece.jump()
@@ -154,6 +278,7 @@
         if(event.keyCode == 32) { //Spacebar, starter spillet på nytt
           myGameArea.stop()
           startGame()
+          gameRunning = true;
           myObstacles = [];
           myTiles2 = [];
           tilesNr = 0;
@@ -432,12 +557,20 @@
                  return;
               }
             }
-            if(score >= 1000) {
+            if(score >= 1000 && score < 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
-
+            } else if(score >= 2000) {
+              myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
             }
         }
         let spawnRate = 0;
+        var myTiles = [
+
+        ];
+        var myTiles2 = [
+
+        ];
+        var tilesNr = 0;
         var startSpawn = setInterval(randomTimer, 1899)
         function randomTimer(){
         spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
@@ -446,7 +579,7 @@
         // spawnRate = (Math.floor(Math.random() * (3)) + 3);
         console.log("Spawnrate "+spawnRate);
         console.log("testytest: "+test)
-        window.setTimeout(spawnObstacle2, test)
+        window.setTimeout(spawnObstacle, test)
         }
         function spawnObstacle() {
         //console.log(spawnRate);
@@ -455,31 +588,16 @@
         minHeight = 120;
         maxHeight = 160;
         var chosenValue = Math.random() < 0.5 ? 0 : 40;
+        var tiles = (Math.random() * maxHeight + minHeight) - chosenValue;
         myObstacles.push(
         new component(
           20,
-          -(Math.random() * maxHeight + minHeight) - chosenValue,
+          -tiles,//-(Math.random() * maxHeight + minHeight) - chosenValue,
           "blue",
           960,
           540 - (chosenValue)
         )
         )
-        }
-        var myTiles = [
-
-        ];
-        var myTiles2 = [
-
-        ];
-        var tilesNr = 0;
-        function spawnObstacle2() {
-        //console.log(spawnRate);
-        minWidth = 20;
-        maxWidth = 120;
-        minHeight = 120;
-        maxHeight = 160;
-        var chosenValue = Math.random() < 0.5 ? 0 : 40;
-        var tiles = (Math.random() * maxHeight + minHeight) - chosenValue;
         myTiles2.push([]);
         for(let i = 0; i < tiles/20; i++) {
           myTiles2[tilesNr].push(
@@ -493,6 +611,14 @@
             )
           )
         }
+        }
+        function spawnObstacle2() {
+        //console.log(spawnRate);
+        minWidth = 20;
+        maxWidth = 120;
+        minHeight = 120;
+        maxHeight = 160;
+        var chosenValue = Math.random() < 0.5 ? 0 : 40;
         tilesNr++;
         myObstacles.push(
         new component(
@@ -533,30 +659,33 @@
         text.fillText("Stein Jumper",textX,100);
         }
         function newHighscore(){ // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
-          if (score >= highscore && score != 0) {
-            // var input = document.createElement("input");
-            // var btn = document.createElement("button");
-            // var btntxt = document.createTextNode("Send inn din highscore!");
-            // var name = prompt("Gratulerer! Du har fått en ny highscore! Skriv inn ditt navn:", "Navn")
-            // btn.appendChild(btntxt);
-            // document.body.appendChild(input);
-            // document.body.appendChild(btn)
-            // input.setAttribute("type", "text")
+          let highScoreField = false;
+          if (score >= highscore && score != 0 && highScoreField == false) {
+            highScoreField = true;
+            var input = document.createElement("input");
+            var btn = document.createElement("button");
+            var btntxt = document.createTextNode("Send inn din highscore!");
+            btn.appendChild(btntxt);
+            document.body.appendChild(input);
+            document.body.appendChild(btn)
+            input.setAttribute("type", "text")
             // input.setAttribute("autofocus", "")
-            // input.setAttribute("style", "") !!!
-            // btn.addEventListener('click', saveInput)
-            //
-            // function saveInput(){
-            //   console.log("Button clicked")
-            //   scoreTracker.name.push(input.value)
-            //   scoreTracker.score.push(score)
-            //   console.log(scoreTracker.name, scoreTracker.score)
-            //   var scoreinput = document.getElementById("scoreInput");
-              var text = name + ", med score " + score + "!<br />";
+            // input.focus();
+            input.setAttribute("style", "")
+            btn.addEventListener('click', saveInput)
+
+            function saveInput(){
+              console.log("Button clicked")
+              scoreTracker.name.push(input.value)
+              scoreTracker.score.push(score)
+              console.log(scoreTracker.name, scoreTracker.score)
+              var scoreinput = document.getElementById("scoreInput");
+              var text = scoreTracker.name + ", med score " + score + "!<br />";
               document.getElementById("scoreInput").innerHTML += text
-            //   input.remove(0)
-            //   btn.remove(0)
-            // }
+              input.remove(0);
+              btn.remove(0);
+              highScoreField = false;
+            }
           }
         }
       let counter = 0;
@@ -575,8 +704,16 @@
 
     </script>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom CSS -->
+    <script src="js/new-age.min.js"></script>
+
   <div id="scoreInput">
-    <h1> Hall of lame: </h1><br />
+    <h1> Hall of lame: </h1></br>
   </div>
   <button id="muteBtn" onclick="toggleMute()">&#128266;</button>
 
