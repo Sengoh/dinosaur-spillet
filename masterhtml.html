@@ -264,7 +264,7 @@
         }
         if(event.keyCode == 32) { //Spacebar, starter spillet på nytt
           myGameArea.stop()
-          startGame()
+          startGame();
           gameRunning = true;
           myObstacles = [];
           myTiles2 = [];
@@ -646,8 +646,10 @@
             // input.focus();
             input.setAttribute("style", "")
             btn.addEventListener('click', saveInput)
+            setTimeout(saveInput, 15000)
 
             function saveInput(){
+              if (input.value.length >= 1) {
               let scoreTracker = {
                 name: [],
                 score: []
@@ -664,6 +666,10 @@
               scoreTracker.name = "";
               scoreTracker.score = "";
               highScoreField = false;
+            } else {
+              input.remove(0)
+              btn.remove(0)
+            }
             }
           }
         }
