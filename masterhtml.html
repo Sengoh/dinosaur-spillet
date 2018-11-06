@@ -257,7 +257,7 @@
           var crouched = false;
           //Registrerer om brukeren trykker på opp eller ned
           document.addEventListener("keydown", function(event) {
-            if (gameRunning) {
+            if (gameRunning || event.keyCode == 32) {
                 event.preventDefault()
             }
           if(event.keyCode == 38 ) { //Piltast opp
@@ -284,6 +284,8 @@
           tilesNr = 0;
           mySpawnedPowerUps = [];
           score = 0;
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
           myGameArea.canvas.style.backgroundImage = "url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png)";
         }
           if(event.keyCode == 80) { //P, setter spillet på pause
@@ -675,15 +677,21 @@
             btn.addEventListener('click', saveInput)
 
             function saveInput(){
+              let scoreTracker = {
+                name: [],
+                score: []
+              }
               console.log("Button clicked")
               scoreTracker.name.push(input.value)
               scoreTracker.score.push(score)
               console.log(scoreTracker.name, scoreTracker.score)
               var scoreinput = document.getElementById("scoreInput");
-              var text = scoreTracker.name + ", med score " + score + "!<br />";
+              var text = scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
               document.getElementById("scoreInput").innerHTML += text
               input.remove(0);
               btn.remove(0);
+              scoreTracker.name = "";
+              scoreTracker.score = "";
               highScoreField = false;
             }
           }
