@@ -681,13 +681,17 @@
             // input.setAttribute("autofocus", "")
             // input.focus();
             input.setAttribute("style", "")
-            btn.addEventListener('click', saveInput)
-            if (reset1 == false) {
-              console.log("running saveinput")
-              saveInput()
-            }
+            let pressed = false;
+            btn.addEventListener('click', function() {
+              pressed = true;
+              saveInput(event);
+            })
+            document.addEventListener("keydown", saveInput);
             reset1 = true;
-            function saveInput(){
+
+            function saveInput(evt){
+              if(evt.keyCode == 32 || pressed == true) {
+              console.log("running saveinput")
               if (input.value.length >= 1) {
               let scoreTracker = {
                 name: [],
@@ -709,8 +713,12 @@
               input.remove(0)
               btn.remove(0)
             }
+            pressed = false;
+            input.value = "";
             }
           }
+          }
+          //input = "";
         }
       let counter = 0;
         function toggleMute(){
