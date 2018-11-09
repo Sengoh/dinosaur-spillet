@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="icon" href="bilder/favicon.png" type="image/gif" sizes="16x16">
 
 
     <!-- Custom styles for this template -->
@@ -27,9 +28,12 @@
     canvas {
       border:1px solid #d3d3d3;
       background-color: #f1f1f1;
-      background-image: url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png);
+      background-image: url(bilder/bakgrunnsbilde1.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
+      position: static;
+      margin-left: 25%;
+      margin-right: 25%;
     }
     #steinspin{
       transform-origin:50% 50%;
@@ -94,12 +98,12 @@
         // Viser spillet og skjuler <body> når du trykker på knappen.
         window.onload = function() {
           document.getElementById('download').style.display = 'none';
-          document.getElementById('startspill').onclick = () => {
-            document.getElementById('canvasher').style.display = 'none';
-            document.getElementById('mainNav').style.backgroundColor = 'black';
-            document.getElementById('download').style.display = 'block';
-            startGame();
-          }
+        }
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          startGame();
         }
 
       </script>
@@ -160,50 +164,61 @@
     <!-- https://www.dl-sounds.com/royalty-free/off-limits/ -->
 
     <script type="text/javascript">
-    //Variabler
+        //Variabler
         var myGamePiece;
         var hekker;
         var myObstacles = [];
+
         //Variabler for score
         var score = 0
         var highscore = 0
         var poengMultiplier = 1;
+
         //Variabler for tilbakemelding ved powerup
         var spook = false
         var dobbel = false
         var powerMelding = "";
-        var paused = false;
-        var checkCollision = true;
-        var gameRunning = true
-        var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
+
+        //Andre variabler
+        var paused = false; //Skjekker om spillet er satt på pause
+        var checkCollision = true;  //Skjekker om det er en kollisjoon mellom to objekter
+        var gameRunning = true // Skjekker om spillet kjører
+
         // Starter spillet, definerer objekter
         function startGame() {
             myGamePiece = new component(60, 60, "bilder/steinbilkvadrat.png", 40, 500, "image");
-            //mySpookelse = new component(60,60, imageSrc + "ghost.png?token=AFEP5X8-nfBR0jZWWM6v62wnL6iJSluhks5b2aHPwA%3D%3D", 960, 200, "image");
-            //myGamePiece = new component(30, 30, "red", 20, 250);
-            //myObstacles = new component(30, 60, "black", 120, 210);
             myGameArea.start();
+            light = true;
         }
+
         // Spillområdet
         var myGameArea = {
             canvas : document.createElement("canvas"),
-            start : function() {
+            start : function() { // Definerer egenskaxper til canvasen/spillområdet
                 this.canvas.width = 960;
                 this.canvas.height = 540;
+                this.canvas.style.marginTop = "30px";
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-                this.interval = setInterval(updateGameArea, 20);
+                this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
             },
-            stop : function() {
+            stop : function() { // Stopper
                 console.log("Stopp")
-                clearInterval(this.interval);
+                powerMelding = "";
+                clearInterval(this.interval); // Stopper updateGameArea
                 gameRunning = false;
+                checkCollision = true;
+                poengMultiplier = 1;
+                spook = false
+                dobbel = false
+
             },
             clear : function() {
-                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clearer canvasen/spillomrdet
             }
         }
 
+      //Array for powerups
       var myPowerUps = [
         [
         //Spookelse
@@ -233,6 +248,7 @@
           score -= 250
         }
       ],
+      //Bildene til powerupsene
       [
         "bilder/ghost.png",
         "bilder/x2.png",
@@ -240,8 +256,12 @@
         "bilder/tyv.png"
       ]
     ];
-      var mySpawnedPowerUps = [];
-          var crouched = false;
+
+    //Array for lagde powerups
+    var mySpawnedPowerUps = [];
+
+    var crouched = false; // Variabel for om spilleren dukker
+
           //Registrerer om brukeren trykker på opp eller ned
           document.addEventListener("keydown", function(event) {
             if (gameRunning || event.keyCode == 32) {
@@ -262,7 +282,7 @@
           crouched = false;
           myGamePiece.crouch(crouched)
         }
-        if(event.keyCode == 32) { //Spacebar, starter spillet på nytt
+        if(event.keyCode == 32) { //Spacebar, starter spillet på nytt, tømmer alle arrayene, reseter score
           myGameArea.stop()
           startGame();
           gameRunning = true;
@@ -273,7 +293,7 @@
           score = 0;
           document.body.scrollTop = 0;
           document.documentElement.scrollTop = 0;
-          myGameArea.canvas.style.backgroundImage = "url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png)";
+          myGameArea.canvas.style.backgroundImage = "url(bilder/bakgrunnsbilde1.png)";
         }
           if(event.keyCode == 80) { //P, setter spillet på pause
               if(paused == false) {
@@ -285,7 +305,7 @@
               }
           }
         })
-        //Funksjon for å lage alle objekter i spillet, både steinbilen og obstacles
+        //Funksjon for å lage og sette egenskaper alle objekter i spillet, både steinbilen og obstacles
         function component(width, height, color, x, y, type, powerup) {
             this.type = type;
             this.width = width;
@@ -304,7 +324,7 @@
             this.gravity = 0.25; //
             this.gravitySpeed = 0;
             this.bounce = 0;
-            this.update = function() {
+            this.update = function() { //Oppdaterer plasseringen til objektene
                 ctx = myGameArea.context;
                 text = myGameArea.context;
                 if(type == "image") {
@@ -318,7 +338,7 @@
                 text.fillStyle = "red"
                 text.fillText("Score: " + score, 680, 70)
                 text.fillText("Highscore: " + highscore,680,95)
-                if (spook == true || dobbel == true) {
+                if ((spook == true || dobbel == true) && gameRunning == true) {
                   text.font = "30px Arial";
                   text.fillStyle = "red";
                   text.fillText(powerMelding,200,200); //Beskjed som kommer når spillfiguren plukker opp en powerup
@@ -441,6 +461,7 @@
                 }
               }
             }
+            //Tegner opp flere obstacles oppå hverandre
             for (let i = 0; i < myTiles2.length; i += 1) {
               for(let j = 0; j < myTiles2[i].length; j ++) {
                 if(myTiles2[i][j] != "") {
@@ -452,7 +473,7 @@
                 }
               }
             }
-            //Opretter obstacles og sender dem mot spillfiguren
+            //Opretter powerups og sender dem mot spillfiguren
             for (let i = 0; i < mySpawnedPowerUps.length; i += 1) {
               if(mySpawnedPowerUps[i] != "") {
                 mySpawnedPowerUps[i].x -= 2;
@@ -463,7 +484,7 @@
                 //Det som skjer dersom spillfiguren plukker opp en powerup
                 if (myGamePiece.pickUp(mySpawnedPowerUps[i])) {
                   console.log(myGamePiece.image.style.opacity);
-                  var currentPowerup = mySpawnedPowerUps[i].powerup;
+                  var currentPowerup = parseInt(mySpawnedPowerUps[i].powerup);
                   console.log(currentPowerup);
                   myPowerUps[0][currentPowerup]();
                   if(mySpawnedPowerUps[i].powerup == 0) {
@@ -510,10 +531,16 @@
                  return;
               }
             }
+
             if(score >= 1000 && score < 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
+              //light = true;
             } else if(score >= 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
+              if(ligher == 0) {
+                setInterval(randomLighting,2000);
+              }
+              ligher++;
             }
           /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
             myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
@@ -523,6 +550,15 @@
             },3000)*/
             //light = setInterval(checkScore, 3000);
             //setTimeout(function(){light=0;},5000);
+        }
+        ligher = 0;
+        function randomLighting(){ // Definerer hvor ofte en powerup skal spawne
+          let test2 = (Math.random() * (3-2)+2) * 1000
+          window.setTimeout(startLight, test2)
+        }
+        function startLight() {
+          myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
+          myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
         }
         /* For later
         var light = 0;
@@ -539,26 +575,35 @@
             }
           },3000)
         }*/
-        let spawnRate = 0;
-        var myTiles = [
+
+        let spawnRate = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
+        let variabel;
+        var myTiles = [  // Array som lagrer bildene for obstacles
 
         ];
-        var myTiles2 = [
+        var myTiles2 = [ // Annen array som lagrer bildene for obstacles
 
         ];
-        var tilesNr = 0;
-        var startSpawn = setInterval(randomTimer, 1899)
+        var tilesNr = 0; // Hvor mange obstacles som er laget
+        var startSpawn = setInterval(randomTimer, 1899) // Definerer hvor stort mellomrom det er mellom to obstacles
         function randomTimer(){
         spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
-        // spawnRate = (Math.random() * 3.3 + 2.2)*1000;
+
         let test = (Math.random() * (4.3-3.2)+3.2) * 1000
         // spawnRate = (Math.floor(Math.random() * (3)) + 3);
         console.log("Spawnrate "+spawnRate);
         console.log("testytest: "+test)
-        window.setTimeout(spawnObstacle, test)
+
+        variabel = test
+
+        if(score > 2000) { // Obstacles spawner oftere når man kommer over 2000 poeng
+          variabel = spawnRate
         }
-        function spawnObstacle() {
-        //console.log(spawnRate);
+
+        window.setTimeout(spawnObstacle, variabel)
+        }
+        function spawnObstacle() { // Funksjon som oppretter og spawner obstacles
+
         minWidth = 20;
         maxWidth = 120;
         minHeight = 120;
@@ -575,7 +620,7 @@
         )
         )
         myTiles2.push([]);
-        for(let i = 0; i < tiles/20; i++) {
+        for(let i = 0; i < tiles/20; i++) { // Oppretter bilder for obstacles og legger de oppå obstacles
           myTiles2[tilesNr].push(
             new component(
               20,
@@ -588,43 +633,26 @@
           )
         }
         }
-        function spawnObstacle2() {
-        //console.log(spawnRate);
-        minWidth = 20;
-        maxWidth = 120;
-        minHeight = 120;
-        maxHeight = 160;
-        var chosenValue = Math.random() < 0.5 ? 0 : 40;
-        tilesNr++;
-        myObstacles.push(
-        new component(
-          20,
-          -tiles,
-          "rgba(255,255,255,0)",
-          960,
-          540 - (chosenValue)
-        )
-        )
-        }
+
         setInterval(randomPowerup, 14899)
 
-
-        function randomPowerup(){
+        function randomPowerup(){ // Definerer hvor ofte en powerup skal spawne
         let test2 = (Math.random() * (15-10)+10) * 1000
         console.log("Spawnrate "+spawnRate);
         window.setTimeout(spawnPowerup, test2)
         }
-        //spawnPowerup();
-        function spawnPowerup() {
+
+        function spawnPowerup() { // Spawner powerups
         console.log("eyy");
-        var powerup = Math.floor(Math.random()*myPowerUps[0].length);
+        var powerup = parseInt(Math.floor(Math.random()*myPowerUps[0].length));
+        let hoyde = Math.floor(Math.random()*800) + 200;
         console.log(powerup);
           mySpawnedPowerUps.push(
-            new component(60,60, myPowerUps[1][powerup], 960, 200, "image", powerup)
+            new component(60,60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
           );
         }
         var textX = 200;
-        function welcomeText() {
+        function welcomeText() { // Tekst som kommer når spillet starter
         y = 50;
         textX -= 2;
         text.font = "30px Arial";
