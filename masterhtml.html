@@ -183,7 +183,7 @@
         var paused = false; //Skjekker om spillet er satt på pause
         var checkCollision = true;  //Skjekker om det er en kollisjoon mellom to objekter
         var gameRunning = true // Skjekker om spillet kjører
-
+        var reset1 = true;
         // Starter spillet, definerer objekter
         function startGame() {
             myGamePiece = new component(60, 60, "bilder/steinbilkvadrat.png", 40, 500, "image");
@@ -294,6 +294,8 @@
           document.body.scrollTop = 0;
           document.documentElement.scrollTop = 0;
           myGameArea.canvas.style.backgroundImage = "url(bilder/bakgrunnsbilde1.png)";
+          reset1 = false;
+          newHighscore();
         }
           if(event.keyCode == 80) { //P, setter spillet på pause
               if(paused == false) {
@@ -674,8 +676,11 @@
             // input.focus();
             input.setAttribute("style", "")
             btn.addEventListener('click', saveInput)
-            setTimeout(saveInput, 15000)
-
+            if (reset1 == false) {
+              console.log("running saveinput")
+              saveInput()
+            }
+            reset1 = true;
             function saveInput(){
               if (input.value.length >= 1) {
               let scoreTracker = {
