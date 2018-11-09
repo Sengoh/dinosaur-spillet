@@ -211,6 +211,7 @@
                 poengMultiplier = 1;
                 spook = false
                 dobbel = false
+                clearInterval(lightInterval);
 
             },
             clear : function() {
@@ -348,7 +349,7 @@
             this.newPos = function() {
                 this.gravitySpeed += this.gravity;
                 this.x += this.speedX;
-                this.y += this.speedY + this.gravitySpeed;
+                this.y += Math.floor(this.speedY + this.gravitySpeed);
                 if(this.y < 400){ //Når spillfiguren er ved denne y-høyden skal den falle
                   this.gravity = 0.75
                 }
@@ -531,16 +532,19 @@
                  return;
               }
             }
-
-            if(score >= 1000 && score < 2000) {
+            if(score >= 100 && score < 1000) {
+              if(light >= 0 && light <= 1) {
+                lightInterval = setInterval(randomLighting,1000);
+                console.log("sfg");
+              }
+              light++;
+            }
+            else if(score >= 1000 && score < 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
               //light = true;
             } else if(score >= 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
-              if(ligher == 0) {
-                setInterval(randomLighting,2000);
-              }
-              ligher++;
+
             }
           /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
             myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
@@ -551,14 +555,16 @@
             //light = setInterval(checkScore, 3000);
             //setTimeout(function(){light=0;},5000);
         }
-        ligher = 0;
+        let light = 0;
+        var lightInterval;
         function randomLighting(){ // Definerer hvor ofte en powerup skal spawne
-          let test2 = (Math.random() * (3-2)+2) * 1000
+          let test2 = Math.random() < 0.7 ? ((Math.random() * (3-2)+2) * 1000) : 100;
           window.setTimeout(startLight, test2)
         }
         function startLight() {
           myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
           myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
+          console.log("re e");
         }
         /* For later
         var light = 0;
