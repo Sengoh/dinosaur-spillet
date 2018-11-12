@@ -6,7 +6,11 @@
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
+<<<<<<< HEAD
     <title>Jakten på det gyldne lønnspålegget</title>
+=======
+    <title>Jakten på det gylne lønnspålegget</title>
+>>>>>>> d14efcfc9d5e42fbdaa1aa5ce5c5f24cbd05a8ca
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,10 +45,16 @@
       100%{ transform:rotate(360deg); }
     }
     #scoreInput{
+<<<<<<< HEAD
       margin-top: -500px;
       margin-right: 50px;
       display: block;
       float: right;
+=======
+      padding-top: 6%;
+      float:right;
+      position: relative;
+>>>>>>> d14efcfc9d5e42fbdaa1aa5ce5c5f24cbd05a8ca
     }
   </style>
   <!--<script src="script.js">
@@ -55,7 +65,11 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
         <img href="#page-top" onclick="history.go(0)" src="hjem.png" width="3%">
+<<<<<<< HEAD
         <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Jakten på det gyldne Lønnspålegget</a>
+=======
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+>>>>>>> d14efcfc9d5e42fbdaa1aa5ce5c5f24cbd05a8ca
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -112,7 +126,8 @@
 
       </script>
       <div class="pull-right" id="scoreInput">
-        <h1> Hall of lame: </h1></br>
+        <h1> Hall of lame: </h1>
+        <a id="inputName"></a><br />
       </div>
 
 
@@ -689,14 +704,16 @@
             highScoreField = true;
             var input = document.createElement("input");
             var btn = document.createElement("button");
-            var btntxt = document.createTextNode("Send inn din highscore!");
+            var btntxt = document.createTextNode("t");
             btn.appendChild(btntxt);
-            document.body.appendChild(input);
-            document.body.appendChild(btn)
+            document.getElementById("inputName").appendChild(input)
+            document.getElementById("inputName").appendChild(btn)
+            // document.body.appendChild(input);
+            // document.body.appendChild(btn)
             input.setAttribute("type", "text")
-            // input.setAttribute("autofocus", "")
+            input.setAttribute("style", "width:100px;")
+            input.setAttribute("autofocus", "")
             // input.focus();
-            input.setAttribute("style", "")
             let pressed = false;
             btn.addEventListener('click', function() {
               pressed = true;
@@ -722,6 +739,7 @@
               document.getElementById("scoreInput").innerHTML += text
               input.remove(0);
               btn.remove(0);
+              console.log(input, btn, "line 755 fired")
               scoreTracker.name = "";
               scoreTracker.score = "";
               highScoreField = false;
