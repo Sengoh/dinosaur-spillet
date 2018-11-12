@@ -14,7 +14,23 @@
  }
  .container {
   display: flex;
+  padding: 15px;
 }
 .container > div {
   flex: 1; /*grow*/
+  padding-top:50px;
+}
+
+.co {
+  float: left;
+  margin: 0 20px 20px 0;
+  width: 240px;
+  height: 300px;
+}
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+    background-image: url(https://cdn.pixabay.com/photo/2018/03/19/13/04/cityscape-3239939_1280.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
