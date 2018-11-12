@@ -32,8 +32,6 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
       position: static;
-      margin-left: 25%;
-      margin-right: 25%;
     }
     #steinspin{
       transform-origin:50% 50%;
@@ -521,10 +519,10 @@
                 myGameArea.stop();
                   //Bestemmer highscore
                if(score > highscore) {
-              highscore = score
+              highscore = score;
+              newHighscore();
                }
-                console.log("Krasj");
-                newHighscore()
+                console.log(score, highscore);
                 text.font = "30px Arial";
                 text.fillStyle = "red";
                 text.fillText("Du tapte!",200,200);
