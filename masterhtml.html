@@ -6,7 +6,7 @@
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
-    <title>Chronicles of Stein the Jumper</title>
+    <title>Jakten på det gyldene lønnspålegget</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +31,10 @@
       background-image: url(bilder/bakgrunnsbilde1.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
+<<<<<<< HEAD
+=======
+      position: static;
+>>>>>>> 3e82b981efc7528fc91a3a168a94b1d3743b2621
     }
     #steinspin{
       transform-origin:50% 50%;
@@ -52,7 +56,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Jakten på det gyldene lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -203,7 +207,7 @@
             start : function() { // Definerer egenskaxper til canvasen/spillområdet
                 this.canvas.width = 960;
                 this.canvas.height = 540;
-                this.canvas.style.marginTop = "30px";
+                this.canvas.style.marginTop = "60px";
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
@@ -280,6 +284,9 @@
             if (gameRunning || event.keyCode == 32) {
                 event.preventDefault()
             }
+            if(event.keyCode == 77) {
+              toggleMute();
+            }
           if(event.keyCode == 38 ) { //Piltast opp
             //hoppfunk
             myGamePiece.jump()
@@ -313,15 +320,19 @@
           if(event.keyCode == 80) { //P, setter spillet på pause
               if(paused == false) {
                 myGameArea.stop()
+                if(score >= 100) {
+                  clearInterval(randomLighting);
+                }
                 paused = true;
               } else {
                 myGameArea.start();
                 paused = false;
+                if(score >= 100) {
+                  lightInterval = setInterval(randomLighting);
+                }
               }
           }
-          if(event.keyCode == 77) {
-            toggleMute();
-          }
+
         })
         //Funksjon for å lage og sette egenskaper alle objekter i spillet, både steinbilen og obstacles
         function component(width, height, color, x, y, type, powerup) {
@@ -565,6 +576,7 @@
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
 
             }
+<<<<<<< HEAD
             ctx.fillStyle = "red";
             // var muter = {
             //   x:
@@ -572,6 +584,10 @@
             //   width:
             //   height:
             // }
+=======
+            muter.update();
+          //  ctx.fillRect(muter.x,muter.y,muter.width,muter.height);
+>>>>>>> 3e82b981efc7528fc91a3a168a94b1d3743b2621
 
           /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
             myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
@@ -593,6 +609,19 @@
           myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
           myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
           console.log("re e");
+        }
+        var muter = new component(20,20,"bilder/speaker.png",10,10, "image");
+
+        myGameArea.canvas.onclick = (e) => {
+          var pos = {
+            x: e.clientX - myGameArea.canvas.offsetLeft,
+            y: e.clientY- myGameArea.canvas.offsetTop
+          }
+          console.log(pos.x + ", " + pos.y);
+          if((pos.x >= muter.x && pos.x <= (muter.x + muter.width)) && (pos.y >= muter.y && pos.y <= (muter.y + muter.height))) {
+            console.log(muter.color);
+            toggleMute();
+          }
         }
         /* For later
         var light = 0;
@@ -753,11 +782,13 @@
             let music = document.getElementById("music")
             music.volume = 0.0;
             document.getElementById("muteBtn").innerHTML = "&#x1F507;";
+            muter.image.src = "bilder/mute.png";
             // music.setAttribute("volume","0.0")
             if (counter >= 2) {
               counter = 0;
               music.volume = 1.0;
               document.getElementById("muteBtn").innerHTML = "&#128266;";
+              muter.image.src = "bilder/speaker.png";
             }
           }
 
