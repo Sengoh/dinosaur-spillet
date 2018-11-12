@@ -89,7 +89,7 @@
               <p>
                 <button class="btn btn-outline btn-xl js-scroll-trigger" id="startspill" name="start">Spill her!</button>
           </div>
-          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>
+          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="bilder/stein.png" alt="Stein"></div>
         </div>
       </div>
     </header>
@@ -115,13 +115,13 @@
           <div class="container" width="100%"><br>
 
 
-            <div class="pull-left"><img src="piltaster.png" alt="Piltaster" width="80px" height="40px">
+            <div class="pull-left"><img src="bilder/piltaster.png" alt="Piltaster" width="80px" height="40px">
               <p style="vertical-align: text-top;">Pil opp for å hoppe, pil ned for å dukke</p>
             </div>
-            <div class="pull-left"><img src="spacebar.png" width="80px" height="40px">
+            <div class="pull-left"><img src="bilder/spacebar.png" width="80px" height="40px">
               <p style="vertical-align: text-top;">Trykk spacebar for å restarte spillet</p>
             </div>
-            <div class="pull-left"><img src="Pkey.png" width="40px" height="40px">
+            <div class="pull-left"><img src="bilder/Pkey.png" width="40px" height="40px">
               <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
             </div>
             <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
@@ -157,9 +157,10 @@
   vil spillet få godkjennelse til å autoplaye en bakgrunnsmusikk. Bakgrunnsmusikken fungerer i Firefox og Chrome.
     Spillet fungerer derimot ikke i Edge, det er flere funksjoner som ikke fungerer i Edge. -->
 
-    <audio autoplay loop id="music">
+    <audio loop id="music">
       <source src="backgroundmusic2.mp3" type="audio/mp3">
       <source src="backgroundmusic.wav" type="audio/wav">
+        <source src="backgroundmusic.ogg" type="audio/ogg">
     </audio>
     <!-- https://www.dl-sounds.com/royalty-free/off-limits/ -->
 
@@ -168,7 +169,6 @@
         var myGamePiece;
         var hekker;
         var myObstacles = [];
-
         //Variabler for score
         var score = 0
         var highscore = 0
@@ -201,11 +201,17 @@
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
+                this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
+                this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
+                document.getElementById("music").play();
+                //welcomeText();
             },
             stop : function() { // Stopper
                 console.log("Stopp")
                 powerMelding = "";
                 clearInterval(this.interval); // Stopper updateGameArea
+                clearInterval(this.objInterval);
+                clearInterval(this.powInterval);
                 gameRunning = false;
                 checkCollision = true;
                 poengMultiplier = 1;
@@ -288,7 +294,7 @@
           startGame();
           gameRunning = true;
           myObstacles = [];
-          myTiles2 = [];
+          myTiles = [];
           tilesNr = 0;
           mySpawnedPowerUps = [];
           score = 0;
@@ -306,6 +312,9 @@
                 myGameArea.start();
                 paused = false;
               }
+          }
+          if(event.keyCode == 77) {
+            toggleMute();
           }
         })
         //Funksjon for å lage og sette egenskaper alle objekter i spillet, både steinbilen og obstacles
@@ -465,13 +474,13 @@
               }
             }
             //Tegner opp flere obstacles oppå hverandre
-            for (let i = 0; i < myTiles2.length; i += 1) {
-              for(let j = 0; j < myTiles2[i].length; j ++) {
-                if(myTiles2[i][j] != "") {
-                  myTiles2[i][j].x -= 6;
-                  myTiles2[i][j].update();
-                  if(myTiles2[i][j].x < -40) {
-                    myTiles2[i][j] = "";
+            for (let i = 0; i < myTiles.length; i += 1) {
+              for(let j = 0; j < myTiles[i].length; j ++) {
+                if(myTiles[i][j] != "") {
+                  myTiles[i][j].x -= 6;
+                  myTiles[i][j].update();
+                  if(myTiles[i][j].x < -40) {
+                    myTiles[i][j] = "";
                   }
                 }
               }
@@ -481,14 +490,16 @@
               if(mySpawnedPowerUps[i] != "") {
                 mySpawnedPowerUps[i].x -= 2;
                 mySpawnedPowerUps[i].update();
-                if(mySpawnedPowerUps[i].x < -50) {
+                if(mySpawnedPowerUps[i].x < -100) {
                   mySpawnedPowerUps[i] = "";
+                  console.log("nani the fuck");
                 }
                 //Det som skjer dersom spillfiguren plukker opp en powerup
                 if (myGamePiece.pickUp(mySpawnedPowerUps[i])) {
                   console.log(myGamePiece.image.style.opacity);
                   var currentPowerup = parseInt(mySpawnedPowerUps[i].powerup);
                   console.log(currentPowerup);
+                  console.log(mySpawnedPowerUps[i]);
                   myPowerUps[0][currentPowerup]();
                   if(mySpawnedPowerUps[i].powerup == 0) {
                     powerMelding = "Boo!";
@@ -548,6 +559,14 @@
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
 
             }
+            ctx.fillStyle = "red";
+            var muter = {
+              x:
+              y:
+              width:
+              height:
+            }
+
           /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
             myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
             console.log("juan");
@@ -590,11 +609,11 @@
         var myTiles = [  // Array som lagrer bildene for obstacles
 
         ];
-        var myTiles2 = [ // Annen array som lagrer bildene for obstacles
+        var myTiles = [ // Annen array som lagrer bildene for obstacles
 
         ];
         var tilesNr = 0; // Hvor mange obstacles som er laget
-        var startSpawn = setInterval(randomTimer, 1899) // Definerer hvor stort mellomrom det er mellom to obstacles
+        //var startSpawn = setInterval(randomTimer, 1899) // Definerer hvor stort mellomrom det er mellom to obstacles
         function randomTimer(){
         spawnRate = (Math.floor(Math.random() * (3.2 - 2.7) + 2.7))*1000;
 
@@ -628,9 +647,9 @@
           540 - (chosenValue)
         )
         )
-        myTiles2.push([]);
+        myTiles.push([]);
         for(let i = 0; i < tiles/20; i++) { // Oppretter bilder for obstacles og legger de oppå obstacles
-          myTiles2[tilesNr].push(
+          myTiles[tilesNr].push(
             new component(
               20,
               -20,
@@ -643,30 +662,31 @@
         }
         }
 
-        setInterval(randomPowerup, 14899)
+        //setInterval(randomPowerup, 14899)
 
         function randomPowerup(){ // Definerer hvor ofte en powerup skal spawne
-        let test2 = (Math.random() * (15-10)+10) * 1000
-        console.log("Spawnrate "+spawnRate);
-        window.setTimeout(spawnPowerup, test2)
+          let test2 = (Math.random() * (15-10)+10) * 1000
+          console.log("Spawnrate "+spawnRate);
+          window.setTimeout(spawnPowerup, test2)
         }
 
         function spawnPowerup() { // Spawner powerups
-        console.log("eyy");
-        var powerup = parseInt(Math.floor(Math.random()*myPowerUps[0].length));
-        let hoyde = Math.floor(Math.random()*800) + 200;
-        console.log(powerup);
+          console.log("eyy");
+          var powerup = parseInt(Math.floor(Math.random()*(myPowerUps[0].length-1)));
+          let hoyde = (Math.floor(Math.random() * (800 - 200) + 200))
+          console.log(powerup);
           mySpawnedPowerUps.push(
             new component(60,60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
           );
+          //myPowerUps[0][powerup]();
         }
         var textX = 200;
         function welcomeText() { // Tekst som kommer når spillet starter
-        y = 50;
-        textX -= 2;
-        text.font = "30px Arial";
-        text.fillStyle = "red";
-        text.fillText("Stein Jumper",textX,100);
+          y = 50;
+          textX -= 2;
+          text.font = "30px Arial";
+          text.fillStyle = "red";
+          text.fillText("Stein Jumper",textX,100);
         }
         function newHighscore(){ // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
           let highScoreField = false;
