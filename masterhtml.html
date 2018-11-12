@@ -6,7 +6,7 @@
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
-    <title>Jakten på det gylne lønnspålegget</title>
+    <title>Jakten på det gyldne lønnspålegget</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +31,7 @@
       background-image: url(bilder/bakgrunnsbilde1.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
+      padding-left: 1em;
     }
     #steinspin{
       transform-origin:50% 50%;
@@ -54,7 +55,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
         <img href="#page-top" onclick="history.go(0)" src="bilder/hjem.png" width="3%">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Jakten på det gyldne Lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -68,7 +69,6 @@
               <a class="nav-link js-scroll-trigger" href="https://github.com/Sengoh/dinosaur-spillet">Github</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 
 
               <li class="nav-item dropdown">
@@ -134,10 +134,10 @@
               <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
             </div>
             <div class="pull-left">
-              <img src="bilder/ghost.png" width="10px" heigh="10px">
-              <img src="bilder/x2.png" width="10px" heigh="10px">
-              <img src="bilder/coin.png" width="10px" heigh="10px">
-              <img src="bilder/tyv.png" width="10px" heigh="10px">
+              <img src="bilder/ghost.png" width="30px" heigh="30px">
+              <img src="bilder/x2.png" width="30px" heigh="30px">
+              <img src="bilder/coin.png" width="30px" heigh="30px">
+              <img src="bilder/tyv.png" width="30px" heigh="30px">
               <p style="vertical-align: text-top;">Samle powerups!</p>
             <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
             <!--https://www.techonthenet.com/clipart/keyboard/space_key_s.php, bilde av spacebar-->
@@ -152,17 +152,6 @@
     <footer>
       <div class="container">
         <p>&copy; Gruppe 27 IDRI. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Side1</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Side2</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Side3</a>
-          </li>
-        </ul>
       </div>
     </footer>
 
@@ -214,6 +203,9 @@
                 this.canvas.width = 960;
                 this.canvas.height = 540;
                 this.canvas.style.marginTop = "60px";
+                this.canvas.style.marginLeft = "auto";
+                this.canvas.style.marginRight = "auto";
+                this.canvas.style.display = "block";
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
