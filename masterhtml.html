@@ -535,11 +535,11 @@
               }
             }
             if(score >= 100 && score < 1000) {
-              if(light >= 0 && light <= 1) {
+              if(light) {
                 lightInterval = setInterval(randomLighting,1000);
                 console.log("sfg");
               }
-              light++;
+              light = false;
             }
             else if(score >= 1000 && score < 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
@@ -557,11 +557,12 @@
             //light = setInterval(checkScore, 3000);
             //setTimeout(function(){light=0;},5000);
         }
-        let light = 0;
+        let light = true;
         var lightInterval;
         function randomLighting(){ // Definerer hvor ofte en powerup skal spawne
-          let test2 = Math.random() < 0.7 ? ((Math.random() * (3-2)+2) * 1000) : 100;
+          let test2 = Math.random() < 0.8 ? (Math.floor((Math.random() * (6-4)+4)) * 1000) : 50;
           window.setTimeout(startLight, test2)
+          console.log(test2);
         }
         function startLight() {
           myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
