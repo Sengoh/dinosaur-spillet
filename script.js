@@ -14,6 +14,18 @@
     var checkCollision = true;
     var gameRunning = true
     var imageSrc = "https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/";
+
+      // Viser spillet og skjuler <body> når du trykker på knappen.
+      window.onload = function() {
+        document.getElementById('download').style.display = 'none';
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          startGame();
+        }
+      }
+
     // Starter spillet, definerer objekter
     function startGame() {
         myGamePiece = new component(60, 60, "bilder/steinbilkvadrat.png", 40, 500, "image");
