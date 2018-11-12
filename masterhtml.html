@@ -31,14 +31,18 @@
       background-image: url(bilder/bakgrunnsbilde1.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      position: static;
     }
     #steinspin{
       transform-origin:50% 50%;
-      animation:2s rotateRight infinite linear;
+      animation:7s rotateRight infinite linear;
     }
     @keyframes rotateRight{
       100%{ transform:rotate(360deg); }
+    }
+    #scoreInput{
+      padding-top: 6%;
+      padding-right: 7%;
+      float:right;
     }
   </style>
   <!--<script src="script.js">
@@ -105,6 +109,10 @@
         }
 
       </script>
+      <div class="pull-right" id="scoreInput">
+        <h1> Hall of lame: </h1></br>
+      </div>
+
 
     <section id="download" class="download bg-primary text-center">
       <div class="container h-50">
@@ -558,12 +566,12 @@
 
             }
             ctx.fillStyle = "red";
-            var muter = {
-              x:
-              y:
-              width:
-              height:
-            }
+            // var muter = {
+            //   x:
+            //   y:
+            //   width:
+            //   height:
+            // }
 
           /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
             myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
@@ -763,10 +771,6 @@
     <!-- Custom CSS -->
     <script src="js/new-age.min.js"></script>
 
-  <div id="scoreInput">
-    <h1> Hall of lame: </h1></br>
-  </div>
-  <button id="muteBtn" onclick="toggleMute()">&#128266;</button>
 
   </body>
 
