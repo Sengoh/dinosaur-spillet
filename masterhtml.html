@@ -52,7 +52,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
+<<<<<<< HEAD
         <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Jakten på det gylne lønnspålegget</a>
+=======
+        <img href="#page-top" onclick="history.go(0)" src="hjæm.png" width="3%">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+>>>>>>> 2829166ae6e7aa9da53ce9dbb7f550068b8c44b0
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -72,11 +77,11 @@
               <li class="nav-item dropdown">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Medvirkende<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown-item"><a href="#">Henrik Hove Eide</a></li>
-                  <li class="dropdown-item"><a href="#">Anders Balsvik</a></li>
-                  <li class="dropdown-item"><a href="#">Erlend Saugstad</a></li>
-                  <li class="dropdown-item"><a href="#">Steinar Vrenne</a></li>
-                  <li class="dropdown-item"><a href="#">Sivert Hognes</a></li>
+                  <li class="dropdown-item"><a href="medvirkende.html#Anders">Anders Balsvik</a></li>
+                  <li class="dropdown-item"><a href="medvirkende.html#Erlend">Erlend Saugstad</a></li>
+                  <li class="dropdown-item"><a href="medvirkende.html#Steinar">Steinar Vrenne</a></li>
+                  <li class="dropdown-item"><a href="medvirkende.html#Sivert">Sivert Hognes</a></li>
+                  <li class="dropdown-item"><a href="medvirkende.html#Henrik">Henrik Hove Eide</a></li>
                 </ul>
               </li>
         </div>
@@ -131,8 +136,15 @@
             <div class="pull-left"><img src="bilder/Pkey.png" width="40px" height="40px">
               <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
             </div>
+            <div class="pull-left">
+              <img src="bilder/ghost.png" width="10px" heigh="10px">
+              <img src="bilder/x2.png" width="10px" heigh="10px">
+              <img src="bilder/coin.png" width="10px" heigh="10px">
+              <img src="bilder/tyv.png" width="10px" heigh="10px">
+              <p style="vertical-align: text-top;">Samle powerups!</p>
             <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
             <!--https://www.techonthenet.com/clipart/keyboard/space_key_s.php, bilde av spacebar-->
+          </div>
 
 
           </div>
@@ -211,7 +223,6 @@
                 this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
                 this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
                 document.getElementById("music").play();
-                //welcomeText();
             },
             stop : function() { // Stopper
                 console.log("Stopp")
@@ -359,16 +370,6 @@
                   ctx.fillStyle = color;
                   ctx.fillRect(this.x, this.y, this.width, this.height);
                 }
-                welcomeText(); //Tekst som kommer når spillet starter
-                text.font = "24px Arial";
-                text.fillStyle = "red"
-                text.fillText("Score: " + score, 680, 70)
-                text.fillText("Highscore: " + highscore,680,95)
-                if ((spook == true || dobbel == true) && gameRunning == true) {
-                  text.font = "30px Arial";
-                  text.fillStyle = "red";
-                  text.fillText(powerMelding,200,200); //Beskjed som kommer når spillfiguren plukker opp en powerup
-                }
             }
             //Funksjon som bestemmer hvor høyt spillfiguren skal hoppe
             this.newPos = function() {
@@ -467,6 +468,16 @@
             myGameArea.clear();
             myGamePiece.newPos();
             myGamePiece.update();
+            welcomeText(); //Tekst som kommer når spillet starter
+            text.font = "24px Arial";
+            text.fillStyle = "red"
+            text.fillText("Score: " + score, 680, 70)
+            text.fillText("Highscore: " + highscore,680,95)
+            if ((spook == true || dobbel == true) && gameRunning == true) {
+              text.font = "30px Arial";
+              text.fillStyle = "red";
+              text.fillText(powerMelding,200,200); //Beskjed som kommer når spillfiguren plukker opp en powerup
+            }
             //Forloop som stopper objectene da de går ut av canvasen slik at de ikke fortsetter i evigheten
             for (let i = 0; i < myObstacles.length; i += 1) {
               if(myObstacles[i] != "") {
@@ -568,22 +579,13 @@
             }
             else if(score >= 1000 && score < 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
-              //light = true;
             } else if(score >= 2000) {
               myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
 
             }
-            muter.update();
-          //  ctx.fillRect(muter.x,muter.y,muter.width,muter.height);
 
-          /*  myGameArea.context.fillStyle = "rgba(255,255,255,0)";
-            myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
-            console.log("juan");
-            setTimeout(function() {
-              console.log("reeee");
-            },3000)*/
-            //light = setInterval(checkScore, 3000);
-            //setTimeout(function(){light=0;},5000);
+            muter.update();
+
         }
         let light = true;
         var lightInterval;
@@ -597,9 +599,9 @@
           myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
           console.log("re e");
         }
-        var muter = new component(20,20,"bilder/speaker.png",10,10, "image");
+        var muter = new component(20,20,"bilder/speaker.png",10,10, "image"); //Lager bilde for  mute-knapp
 
-        myGameArea.canvas.onclick = (e) => {
+        myGameArea.canvas.onclick = (e) => { //Sjekker om x- og y-verdiene til musen er innenfor mute-knapper, og kjører mutefunksjonen hvis de er
           var pos = {
             x: e.clientX - myGameArea.canvas.offsetLeft,
             y: e.clientY- myGameArea.canvas.offsetTop
@@ -610,21 +612,6 @@
             toggleMute();
           }
         }
-        /* For later
-        var light = 0;
-        if(score <= 2000) {
-          setInterval(function() {
-            if(light >= 0 && light <= 2) {
-              myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
-              myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
-              light++;
-            } else if (light == 2) {
-              myGameArea.context.fillStyle = "rgba(255,255,255,0)";
-              myGameArea.context.fillRect(0,0,myGameArea.canvas.width,myGameArea.canvas.height);
-              light = 0;
-            }
-          },3000)
-        }*/
 
         let spawnRate = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
         let variabel;
@@ -693,14 +680,12 @@
         }
 
         function spawnPowerup() { // Spawner powerups
-          console.log("eyy");
           var powerup = parseInt(Math.floor(Math.random()*(myPowerUps[0].length-1)));
           let hoyde = (Math.floor(Math.random() * (800 - 200) + 200))
           console.log(powerup);
           mySpawnedPowerUps.push(
             new component(60,60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
           );
-          //myPowerUps[0][powerup]();
         }
         var textX = 200;
         function welcomeText() { // Tekst som kommer når spillet starter
@@ -771,13 +756,11 @@
           counter++
             let music = document.getElementById("music")
             music.volume = 0.0;
-            document.getElementById("muteBtn").innerHTML = "&#x1F507;";
             muter.image.src = "bilder/mute.png";
             // music.setAttribute("volume","0.0")
             if (counter >= 2) {
               counter = 0;
               music.volume = 1.0;
-              document.getElementById("muteBtn").innerHTML = "&#128266;";
               muter.image.src = "bilder/speaker.png";
             }
           }
