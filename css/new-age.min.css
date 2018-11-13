@@ -415,6 +415,7 @@ footer ul li a:hover {
   margin: 0 20px 20px 0;
   width: 240px;
   height: 300px;
+  object-fit: cover;
 }
 canvas {
   border: 1px solid #d3d3d3;
