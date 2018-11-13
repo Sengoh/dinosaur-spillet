@@ -319,8 +319,11 @@ function updateGameArea() {
   text.fillText("Highscore: " + highscore, 680, 95);
 
   if ((spook == true || dobbel == true) && gameRunning == true) {
-    text.font = "30px Arial";
-    text.fillStyle = "red";
+    text.font = "24px Arial";
+    text.fillStyle = "#FDC949";
+    text.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    text.strokeText(powerMelding, 200, 200);
     text.fillText(powerMelding, 200, 200); //Beskjed som kommer når spillfiguren plukker opp en powerup
   }
   //Forloop som stopper objectene da de går ut av canvasen slik at de ikke fortsetter i evigheten
@@ -409,11 +412,14 @@ function updateGameArea() {
         newHighscore();
       }
       console.log(score, highscore);
-      text.font = "30px Arial";
-      text.fillStyle = "red";
+      text.font = "24px Arial";
+      text.fillStyle = "#FDC949";
+      text.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      text.strokeText("Du tapte!", 200, 200);
       text.fillText("Du tapte!", 200, 200);
       text.font = "15px Arial";
-      text.fillStyle = "red";
+      text.strokeText("Vil du prøve på nytt? Trykk på space", 160, 240);
       text.fillText("Vil du prøve på nytt? Trykk på space", 160, 240);
       return;
     }
