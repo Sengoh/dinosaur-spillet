@@ -57,7 +57,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
         <img href="#page-top" onclick="history.go(0)" src="bilder/hjem.png" width="3%">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Jakten på det gyldne Lønnspålegget</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gyldne Lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -206,7 +206,7 @@
             start : function() { // Definerer egenskaxper til canvasen/spillområdet
                 this.canvas.width = 960;
                 this.canvas.height = 540;
-                this.canvas.style.marginTop = "60px";
+                this.canvas.style.marginTop = "78px";
                 this.canvas.style.marginLeft = "auto";
                 this.canvas.style.marginRight = "auto";
                 this.canvas.style.display = "block";
@@ -463,9 +463,14 @@
             myGamePiece.update();
             welcomeText(); //Tekst som kommer når spillet starter
             text.font = "24px Arial";
-            text.fillStyle = "red"
+            text.fillStyle = "#FDC949"
+            text.strokeStyle = "black";
+            ctx.lineWidth = 3;
+            text.strokeText("Score: " + score, 680, 70)
+            text.strokeText("Highscore: " + highscore,680,95)
             text.fillText("Score: " + score, 680, 70)
             text.fillText("Highscore: " + highscore,680,95)
+
             if ((spook == true || dobbel == true) && gameRunning == true) {
               text.font = "30px Arial";
               text.fillStyle = "red";
@@ -563,18 +568,15 @@
                  return;
               }
             }
-            if(score >= 100 && score < 1000) {
+           if(score >= 1000 && score < 2000) {
+              myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
+            } else if(score >= 2000) {
+              myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
               if(light) {
                 lightInterval = setInterval(randomLighting,1000);
                 console.log("sfg");
               }
               light = false;
-            }
-            else if(score >= 1000 && score < 2000) {
-              myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
-            } else if(score >= 2000) {
-              myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
-
             }
 
             muter.update();
@@ -685,8 +687,8 @@
           y = 50;
           textX -= 2;
           text.font = "30px Arial";
-          text.fillStyle = "red";
-          text.fillText("Stein Jumper",textX,100);
+          text.fillStyle = "#562a73";
+          text.fillText("Klarer du å hjelpe Stein med å få det gyldne lønnspålegget?",textX,125);
         }
         function newHighscore(){ // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
           let highScoreField = false;
