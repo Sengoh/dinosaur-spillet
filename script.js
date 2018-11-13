@@ -459,11 +459,15 @@ myGameArea.canvas.onclick = e => {
     y: e.clientY - myGameArea.canvas.offsetTop
   };
   console.log(pos.x + ", " + pos.y);
-  if ((pos.x >= muter.x &&  pos.x <= muter.x + muter.width) && (pos.y >= muter.y && pos.y <= muter.y + muter.height)) {
+  if (
+    pos.x >= muter.x &&
+    pos.x <= muter.x + muter.width &&
+    (pos.y >= muter.y && pos.y <= muter.y + muter.height)
+  ) {
     console.log(muter.color);
     toggleMute();
   }
-  console.log(muter.x,muter.y);
+  console.log(muter.x, muter.y);
 };
 
 let spawnRate = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
@@ -589,7 +593,7 @@ function newHighscore() {
     reset1 = true;
 
     function saveInput(evt) {
-      if (evt.keyCode == 32 || pressed == true) {
+      if (evt.keyCode == 32 || pressed == true || evt.keyCode == 13) {
         console.log("running saveinput");
         if (input.value.length >= 1) {
           //Validerer at skjemaet ikke er tomt, og sletter hele boksen i tilfelle spilleren ikke vil lagre sin highscore.
@@ -636,5 +640,3 @@ function toggleMute() {
     muter.image.src = "bilder/speaker.png";
   }
 }
-
-//test!
