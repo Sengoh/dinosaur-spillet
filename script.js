@@ -549,7 +549,7 @@ function randomPowerup() {
 function spawnPowerup() {
   // Spawner powerups
   var powerup = parseInt(
-    Math.floor(Math.random() * (myPowerUps[0].length - 1))
+    Math.floor(Math.random() * (myPowerUps[0].length))
   );
   let hoyde = Math.floor(Math.random() * (800 - 200) + 200);
   console.log(powerup);
