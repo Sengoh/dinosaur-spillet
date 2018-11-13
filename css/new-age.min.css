@@ -52,7 +52,6 @@ section h2 {
 }
 #mainNav {
   border-color: rgba(34, 34, 34, 0.05);
-  background-color: #fff;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
   font-family: Catamaran, Helvetica, Arial, sans-serif;
@@ -105,7 +104,7 @@ section h2 {
   }
   #mainNav .navbar-brand:focus,
   #mainNav .navbar-brand:hover {
-    color: #fff;
+    color: #e0bdbd;
   }
   #mainNav .navbar-nav > li > a,
   #mainNav .navbar-nav > li > a:focus {
@@ -120,7 +119,7 @@ section h2 {
     background-color: #fff;
   }
   #mainNav.navbar-shrink .navbar-brand {
-    color: #222;
+    color: #e0bdbd;
   }
   #mainNav.navbar-shrink .navbar-brand:focus,
   #mainNav.navbar-shrink .navbar-brand:hover {
@@ -128,7 +127,7 @@ section h2 {
   }
   #mainNav.navbar-shrink .navbar-nav > li > a,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus {
-    color: #222;
+    color: #e0bdbd;
   }
   #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover,
   #mainNav.navbar-shrink .navbar-nav > li > a:hover {
