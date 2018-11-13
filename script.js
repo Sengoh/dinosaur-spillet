@@ -384,7 +384,7 @@ function updateGameArea() {
           powerMelding = "500 BONUS!";
           spook = true;
         } else if (mySpawnedPowerUps[i].powerup == 3) {
-          powerMelding = "Å nei, Atle tok 250 poeng!";
+          powerMelding = "Å nei, tyven tok 250 poeng!";
           spook = true;
         }
 
@@ -559,7 +559,7 @@ function welcomeText() {
   text.font = "30px Arial";
   text.fillStyle = "#562a73";
   text.fillText(
-    "Klarer du å hjelpe Stein med å få det gyldne lønnspålegget?",
+    "Klarer du å hjelpe Stein med å få det gylne lønnspålegget?",
     textX,
     125
   );
@@ -608,15 +608,15 @@ function newHighscore() {
           var scoreinput = document.getElementById("scoreInput");
           var text =
             scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
-          document.getElementById("scoreInput").innerHTML += text;
+          var scoreInput = document.getElementById("scoreInput");
+          scoreInput += text;
+          // scoreInput.parentNode.insertBefore(text, scoreInput);
           scoreTracker.name = "";
           scoreTracker.score = "";
           highScoreField = false;
-          console.log(input, btn);
           document.getElementById("inp").remove(0);
           document.getElementById("btn").remove(0);
           input.value = "";
-          console.log(input, btn);
         } else {
           input.remove(0);
           btn.remove(0);
