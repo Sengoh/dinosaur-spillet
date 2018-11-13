@@ -41,10 +41,12 @@
       100%{ transform:rotate(360deg); }
     }
     #scoreInput{
-      width: 300px;
-      padding-top: 6%;
+      width: 250px;
+      margin-top: -500px;
+      margin-right: 100px;
       float:right;
       position: relative;
+      display:none;
     }
   </style>
   <!--<script src="script.js">
@@ -107,12 +109,14 @@
           document.getElementById('canvasher').style.display = 'none';
           document.getElementById('mainNav').style.backgroundColor = 'black';
           document.getElementById('download').style.display = 'block';
+          document.getElementById("scoreInput").style.display = "block";
           startGame();
         }
 
       </script>
       <div class="pull-right" id="scoreInput">
-        <h1> Hall of lame: </h1>
+        <h1> Hall of Fame: </h1>
+        <h6>Skriv inn ditt navn for å havne i den legendariske Hall of Fame</h6>
         <a id="inputName"></a><br />
       </div>
 
@@ -690,7 +694,7 @@
             highScoreField = true;
             var input = document.createElement("input");
             var btn = document.createElement("button");
-            var btntxt = document.createTextNode("t");
+            var btntxt = document.createTextNode("Send inn");
             btn.appendChild(btntxt);
             document.getElementById("inputName").appendChild(input)
             document.getElementById("inputName").appendChild(btn)
@@ -699,6 +703,7 @@
             input.setAttribute("type", "text")
             input.setAttribute("style", "width:100px;")
             input.setAttribute("autofocus", "")
+            input.setAttribute("placeholder", "Playername")
             // input.focus();
             let pressed = false;
             btn.addEventListener('click', function() {
@@ -723,12 +728,13 @@
               var scoreinput = document.getElementById("scoreInput");
               var text = scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
               document.getElementById("scoreInput").innerHTML += text
-              input.remove(0);
-              btn.remove(0);
-              console.log(input, btn, "line 755 fired")
               scoreTracker.name = "";
               scoreTracker.score = "";
               highScoreField = false;
+              console.log(input, btn);
+              input.remove(0);
+              btn.remove(0);
+              console.log(input, btn);
             } else {
               input.remove(0)
               btn.remove(0)
