@@ -17,6 +17,18 @@ var paused = false; //Skjekker om spillet er satt på pause
 var checkCollision = true; //Skjekker om det er en kollisjoon mellom to objekter
 var gameRunning = true; // Skjekker om spillet kjører
 var reset1 = true;
+
+      // Viser spillet og skjuler <body> når du trykker på knappen.
+      window.onload = function() {
+        document.getElementById('download').style.display = 'none';
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          startGame();
+        }
+      }
+
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
