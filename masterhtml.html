@@ -6,7 +6,7 @@
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
-    <title>Jakten på det gylne lønnspålegget</title>
+    <title>Jakten på det gyldne lønnspålegget</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,12 +41,10 @@
       100%{ transform:rotate(360deg); }
     }
     #scoreInput{
-      width: 250px;
-      margin-top: -500px;
-      margin-right: 100px;
+      width: 300px;
+      padding-top: 6%;
       float:right;
       position: relative;
-      display:none;
     }
   </style>
   <!--<script src="script.js">
@@ -57,7 +55,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
         <img href="#page-top" onclick="history.go(0)" src="bilder/hjem.png" width="3%">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gylne Lønnspålegget</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gyldne Lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -109,14 +107,12 @@
           document.getElementById('canvasher').style.display = 'none';
           document.getElementById('mainNav').style.backgroundColor = 'black';
           document.getElementById('download').style.display = 'block';
-          document.getElementById("scoreInput").style.display = "block";
           startGame();
         }
 
       </script>
       <div class="pull-right" id="scoreInput">
-        <h1> Hall of Fame: </h1>
-        <h6>Skriv inn ditt navn for å havne i den legendariske Hall of Fame</h6>
+        <h1> Hall of lame: </h1>
         <a id="inputName"></a><br />
       </div>
 
@@ -693,7 +689,7 @@
           textX -= 2;
           text.font = "30px Arial";
           text.fillStyle = "#562a73";
-          text.fillText("Klarer du å hjelpe Stein med å få det gylne lønnspålegget?",textX,125);
+          text.fillText("Klarer du å hjelpe Stein med å få det gyldne lønnspålegget?",textX,125);
         }
         function newHighscore(){ // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
           let highScoreField = false;
@@ -701,7 +697,7 @@
             highScoreField = true;
             var input = document.createElement("input");
             var btn = document.createElement("button");
-            var btntxt = document.createTextNode("Send inn");
+            var btntxt = document.createTextNode("t");
             btn.appendChild(btntxt);
             document.getElementById("inputName").appendChild(input)
             document.getElementById("inputName").appendChild(btn)
@@ -710,7 +706,6 @@
             input.setAttribute("type", "text")
             input.setAttribute("style", "width:100px;")
             input.setAttribute("autofocus", "")
-            input.setAttribute("placeholder", "Playername")
             // input.focus();
             let pressed = false;
             btn.addEventListener('click', function() {
@@ -735,14 +730,12 @@
               var scoreinput = document.getElementById("scoreInput");
               var text = scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
               document.getElementById("scoreInput").innerHTML += text
+              input.remove(0);
+              btn.remove(0);
+              console.log(input, btn, "line 755 fired")
               scoreTracker.name = "";
               scoreTracker.score = "";
               highScoreField = false;
-              console.log(input, btn);
-              input.remove(0);
-              btn.remove(0);
-              input.value = "";
-              console.log(input, btn);
             } else {
               input.remove(0)
               btn.remove(0)
