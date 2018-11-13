@@ -203,7 +203,12 @@
                 this.canvas.width = 960;
                 this.canvas.height = 540;
                 this.canvas.style.marginTop = "78px";
-                this.canvas.style.marginLeft = "auto";
+                if(window.innerWidth >= 1500) {
+                    this.canvas.style.marginLeft = "auto";
+                } else {
+                  this.canvas.style.marginLeft = 0;
+                }
+                console.log(window.innerHeight);
                 this.canvas.style.marginRight = "auto";
                 this.canvas.style.display = "block";
                 this.context = this.canvas.getContext("2d");
