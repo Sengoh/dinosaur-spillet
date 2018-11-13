@@ -18,16 +18,17 @@ var checkCollision = true; //Skjekker om det er en kollisjoon mellom to objekter
 var gameRunning = true; // Skjekker om spillet kjører
 var reset1 = true;
 
-      // Viser spillet og skjuler <body> når du trykker på knappen.
-      window.onload = function() {
-        document.getElementById('download').style.display = 'none';
-        document.getElementById('startspill').onclick = () => {
-          document.getElementById('canvasher').style.display = 'none';
-          document.getElementById('mainNav').style.backgroundColor = 'black';
-          document.getElementById('download').style.display = 'block';
-          startGame();
-        }
-      }
+// Viser spillet og skjuler <body> når du trykker på knappen.
+window.onload = function() {
+  document.getElementById("download").style.display = "none";
+  document.getElementById("startspill").onclick = () => {
+    document.getElementById("canvasher").style.display = "none";
+    document.getElementById("mainNav").style.backgroundColor = "black";
+    document.getElementById("download").style.display = "block";
+    document.getElementById("scoreInput").style.display = "block";
+    startGame();
+  };
+};
 
 // Starter spillet, definerer objekter
 function startGame() {
@@ -560,9 +561,7 @@ function randomPowerup() {
 
 function spawnPowerup() {
   // Spawner powerups
-  var powerup = parseInt(
-    Math.floor(Math.random() * (myPowerUps[0].length))
-  );
+  var powerup = parseInt(Math.floor(Math.random() * myPowerUps[0].length));
   let hoyde = Math.floor(Math.random() * (800 - 200) + 200);
   console.log(powerup);
   mySpawnedPowerUps.push(
@@ -626,8 +625,7 @@ function newHighscore() {
           var scoreinput = document.getElementById("scoreInput");
           var text =
             scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
-          var scoreInput = document.getElementById("scoreInput");
-          scoreInput += text;
+          document.getElementById("scoreInput").innerHTML += text;
           // scoreInput.parentNode.insertBefore(text, scoreInput);
           scoreTracker.name = "";
           scoreTracker.score = "";
