@@ -6,7 +6,7 @@
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
-    <title>Jakten på det gyldne lønnspålegget</title>
+    <title>Jakten på det gylne lønnspålegget</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
         <img href="#page-top" onclick="history.go(0)" src="bilder/hjem.png" width="3%">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gyldne Lønnspålegget</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gylne Lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -688,7 +688,7 @@
           textX -= 2;
           text.font = "30px Arial";
           text.fillStyle = "#562a73";
-          text.fillText("Klarer du å hjelpe Stein med å få det gyldne lønnspålegget?",textX,125);
+          text.fillText("Klarer du å hjelpe Stein med å få det gylne lønnspålegget?",textX,125);
         }
         function newHighscore(){ // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
           let highScoreField = false;
@@ -736,6 +736,7 @@
               console.log(input, btn);
               input.remove(0);
               btn.remove(0);
+              input.value = "";
               console.log(input, btn);
             } else {
               input.remove(0)
