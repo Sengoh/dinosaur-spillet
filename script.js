@@ -523,18 +523,23 @@ function newHighscore(){ // Logger score til spiller, og sjekker om denne er bed
   let highScoreField = false;
   if (score >= highscore && score != 0 && highScoreField == false) {
     highScoreField = true;
-    var input = document.createElement("input");
-    var btn = document.createElement("button");
-    var btntxt = document.createTextNode("t");
-    btn.appendChild(btntxt);
-    document.getElementById("inputName").appendChild(input)
-    document.getElementById("inputName").appendChild(btn)
-    // document.body.appendChild(input);
-    // document.body.appendChild(btn)
-    input.setAttribute("type", "text")
-    input.setAttribute("style", "width:100px;")
-    input.setAttribute("autofocus", "")
+    var scoreInput = document.getElementById("scoreInput");
+    var inputName = document.getElementById("inputName");
+    // var input = document.createElement("input");
+    // var btn = document.createElement("button");
+    // var btntxt = document.createTextNode("Send inn");
+    // btn.appendChild(btntxt);
+    // inputName.appendChild(input)
+    // inputName.appendChild(btn)
+    // // document.body.appendChild(input);
+    // // document.body.appendChild(btn)
+    // input.setAttribute("type", "text")
+    // input.setAttribute("style", "width:100px;")
+    // input.setAttribute("autofocus", "")
     // input.focus();
+    inputName.style.display = "block";
+    var input = document.getElementById("nameInput");
+    var btn = document.getElementById("submit");
     let pressed = false;
     btn.addEventListener('click', function() {
       pressed = true;
@@ -545,33 +550,37 @@ function newHighscore(){ // Logger score til spiller, og sjekker om denne er bed
 
     function saveInput(evt){
       if(evt.keyCode == 32 || pressed == true) {
-      console.log("running saveinput")
-      if (input.value.length >= 1) {
-      let scoreTracker = {
-        name: [],
-        score: []
+        console.log("running saveinput")
+        if (input.value != "") {
+          let scoreTracker = {
+            name: [],
+            score: []
+          }
+          console.log("Button clicked");
+          scoreTracker.name.push(input.value);
+          scoreTracker.score.push(score);
+          console.log(scoreTracker.name, scoreTracker.score);
+          var scoreinput = document.getElementById("scoreInput");
+          var text = scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
+          document.getElementById("scoreInput").innerHTML += text;
+          // inputName.removeChild(input);
+          // inputName.parentNode.removeChild(btn);
+          // input.remove();
+          // btn.remove();
+          document.getElementById("inputName").style.display = "none";
+          console.log(input, btn, "line 755 fired")
+          scoreTracker.name = "";
+          scoreTracker.score = "";
+          highScoreField = false;
+        } else {
+          // input.remove(0)
+          // btn.remove(0)
+          inputName.style.display = "none";
+        }
+        pressed = false;
+        input.value = "";
       }
-      console.log("Button clicked")
-      scoreTracker.name.push(input.value)
-      scoreTracker.score.push(score)
-      console.log(scoreTracker.name, scoreTracker.score)
-      var scoreinput = document.getElementById("scoreInput");
-      var text = scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
-      document.getElementById("scoreInput").innerHTML += text
-      input.remove(0);
-      btn.remove(0);
-      console.log(input, btn, "line 755 fired")
-      scoreTracker.name = "";
-      scoreTracker.score = "";
-      highScoreField = false;
-    } else {
-      input.remove(0)
-      btn.remove(0)
     }
-    pressed = false;
-    input.value = "";
-    }
-  }
   }
   //input = "";
 }

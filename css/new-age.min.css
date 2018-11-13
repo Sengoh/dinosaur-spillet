@@ -45,7 +45,7 @@ canvas {
 #scoreInput{
   width: 250px;
   margin-top: -500px;
-  margin-right: 100px;
+  margin-right: 0px;
   float:right;
   position: relative;
   display:none;
