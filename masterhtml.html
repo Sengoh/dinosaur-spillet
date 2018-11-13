@@ -41,8 +41,13 @@
       100%{ transform:rotate(360deg); }
     }
     #scoreInput{
+<<<<<<< HEAD
       width: 300px;
       padding-top: 6%;
+=======
+      width: 250px;
+      margin-top: -500px;
+>>>>>>> d2fae50b252c76a8d75c3e26647eb2393c359128
       float:right;
       position: relative;
     }
@@ -706,6 +711,12 @@
             input.setAttribute("type", "text")
             input.setAttribute("style", "width:100px;")
             input.setAttribute("autofocus", "")
+<<<<<<< HEAD
+=======
+            input.setAttribute("placeholder", "Playername")
+            input.setAttribute("id", "inp")
+            btn.setAttribute("id", "btn")
+>>>>>>> d2fae50b252c76a8d75c3e26647eb2393c359128
             // input.focus();
             let pressed = false;
             btn.addEventListener('click', function() {
@@ -718,7 +729,7 @@
             function saveInput(evt){
               if(evt.keyCode == 32 || pressed == true) {
               console.log("running saveinput")
-              if (input.value.length >= 1) {
+              if (input.value.length >= 1) { //Validerer at skjemaet ikke er tomt, og sletter hele boksen i tilfelle spilleren ikke vil lagre sin highscore.
               let scoreTracker = {
                 name: [],
                 score: []
@@ -736,6 +747,14 @@
               scoreTracker.name = "";
               scoreTracker.score = "";
               highScoreField = false;
+<<<<<<< HEAD
+=======
+              console.log(input, btn);
+              document.getElementById("inp").remove(0);
+              document.getElementById("btn").remove(0);
+              input.value = "";
+              console.log(input, btn);
+>>>>>>> d2fae50b252c76a8d75c3e26647eb2393c359128
             } else {
               input.remove(0)
               btn.remove(0)
