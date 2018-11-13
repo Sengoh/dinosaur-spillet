@@ -29,7 +29,13 @@ window.onload = function() {
     startGame();
   };
 };
-
+window.onresize = function(event) {
+  if(window.innerWidth <= 1500) {
+    myGameArea.canvas.style.marginLeft = "0px";
+  } else {
+    myGameArea.canvas.style.marginLeft = "auto";
+  }
+}
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
