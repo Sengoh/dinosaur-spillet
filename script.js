@@ -17,6 +17,18 @@ var paused = false; //Skjekker om spillet er satt på pause
 var checkCollision = true; //Skjekker om det er en kollisjoon mellom to objekter
 var gameRunning = true; // Skjekker om spillet kjører
 var reset1 = true;
+
+      // Viser spillet og skjuler <body> når du trykker på knappen.
+      window.onload = function() {
+        document.getElementById('download').style.display = 'none';
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          startGame();
+        }
+      }
+
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
@@ -319,8 +331,11 @@ function updateGameArea() {
   text.fillText("Highscore: " + highscore, 680, 95);
 
   if ((spook == true || dobbel == true) && gameRunning == true) {
-    text.font = "30px Arial";
-    text.fillStyle = "red";
+    text.font = "24px Arial";
+    text.fillStyle = "#FDC949";
+    text.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    text.strokeText(powerMelding, 200, 200);
     text.fillText(powerMelding, 200, 200); //Beskjed som kommer når spillfiguren plukker opp en powerup
   }
   //Forloop som stopper objectene da de går ut av canvasen slik at de ikke fortsetter i evigheten
@@ -409,11 +424,14 @@ function updateGameArea() {
         newHighscore();
       }
       console.log(score, highscore);
-      text.font = "30px Arial";
-      text.fillStyle = "red";
+      text.font = "24px Arial";
+      text.fillStyle = "#FDC949";
+      text.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      text.strokeText("Du tapte!", 200, 200);
       text.fillText("Du tapte!", 200, 200);
       text.font = "15px Arial";
-      text.fillStyle = "red";
+      text.strokeText("Vil du prøve på nytt? Trykk på space", 160, 240);
       text.fillText("Vil du prøve på nytt? Trykk på space", 160, 240);
       return;
     }
@@ -543,7 +561,7 @@ function randomPowerup() {
 function spawnPowerup() {
   // Spawner powerups
   var powerup = parseInt(
-    Math.floor(Math.random() * (myPowerUps[0].length - 1))
+    Math.floor(Math.random() * (myPowerUps[0].length))
   );
   let hoyde = Math.floor(Math.random() * (800 - 200) + 200);
   console.log(powerup);
