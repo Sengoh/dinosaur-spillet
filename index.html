@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<html lang="en">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Spillprosjekt">
     <meta name="author" content="Gruppe 27 IDRI">
 
-    <title>Chronicles of Stein the Jumper</title>
+    <title>Jakten på det gylne lønnspålegget</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="icon" href="bilder/favicon.png" type="image/gif" sizes="16x16">
 
 
     <!-- Custom styles for this template -->
     <link href="css/new-age.min.css" rel="stylesheet">
-    <script src="script.js"></script>
+    <!--<script src="script.js"></script>-->
+
   </head>
-    <body id="page-top">
+  <!--<div id="steinspin"><img src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>-->
+  <!--<script src="script.js">
 
-
+  </script>-->
+  <body id="page-top">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
       <div class="container" style="padding-bottom:5px;">
-        <img href="#page-top" onclick="history.go(0)" src="hjæm.png" width="3%">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">Chronicles of Stein the Jumper</a>
+        <img href="#page-top" onclick="history.go(0)" src="bilder/hjem.png" width="3%">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" onclick="history.go(0)">&nbsp; Jakten på det gylne Lønnspålegget</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               Menu
               <i class="fas fa-bars"></i>
@@ -44,7 +46,6 @@
               <a class="nav-link js-scroll-trigger" href="https://github.com/Sengoh/dinosaur-spillet">Github</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 
 
               <li class="nav-item dropdown">
@@ -69,10 +70,31 @@
               <p>
                 <button class="btn btn-outline btn-xl js-scroll-trigger" id="startspill" name="start">Spill her!</button>
           </div>
-          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="https://raw.githubusercontent.com/Sengoh/dinosaur-spillet/master/bilder/stein.png?token=AqNYk3cTBXVRAjnyqrB2Q6noRTZwvqrrks5b4X3swA%3D%3D" alt="Stein"></div>
+          <div class="col-lg-5 my-auto" align="right"> <img id="steinspin" src="bilder/stein.png" alt="Stein"></div>
         </div>
       </div>
     </header>
+
+  <script>
+        // Viser spillet og skjuler <body> når du trykker på knappen.
+        window.onload = function() {
+          document.getElementById('download').style.display = 'none';
+        }
+        document.getElementById('startspill').onclick = () => {
+          document.getElementById('canvasher').style.display = 'none';
+          document.getElementById('mainNav').style.backgroundColor = 'black';
+          document.getElementById('download').style.display = 'block';
+          document.getElementById("scoreInput").style.display = "block";
+          startGame();
+        }
+
+      </script>
+      <div class="pull-right" id="scoreInput">
+        <h1> Hall of Fame: </h1>
+        <h6>Skriv inn ditt navn for å havne i den legendariske Hall of Fame</h6>
+        <div style="display:none;" id="inputName"><input id="nameInput"><button id="submit">Send inn</button></div><br />
+      </div>
+
 
     <section id="download" class="download bg-primary text-center">
       <div class="container h-50">
@@ -81,23 +103,24 @@
           <div class="container" width="100%"><br>
 
 
-            <div class="pull-left"><img src="piltaster.png" alt="Piltaster" width="80px" height="40px">
+            <div class="pull-left"><img src="bilder/piltaster.png" alt="Piltaster" width="80px" height="40px">
               <p style="vertical-align: text-top;">Pil opp for å hoppe, pil ned for å dukke</p>
             </div>
-            <div class="pull-left"><img src="spacebar.png" width="80px" height="40px">
+            <div class="pull-left"><img src="bilder/spacebar.png" width="80px" height="40px">
               <p style="vertical-align: text-top;">Trykk spacebar for å restarte spillet</p>
             </div>
-            <div class="pull-left"><img src="Pkey.png" width="40px" height="40px">
+            <div class="pull-left"><img src="bilder/Pkey.png" width="40px" height="40px">
               <p style="vertical-align: text-top;">Trykk P for å pause spillet</p>
             </div>
             <div class="pull-left">
-              <img src="bilder/ghost.png" width="10px" heigh="10px">
-              <img src="bilder/x2.png" width="10px" heigh="10px">
-              <img src="bilder/coin.png" width="10px" heigh="10px">
-              <img src="bilder/tyv.png" width="10px" heigh="10px">
+              <img src="bilder/ghost.png" width="30px" heigh="30px">
+              <img src="bilder/x2.png" width="30px" heigh="30px">
+              <img src="bilder/coin.png" width="30px" heigh="30px">
+              <img src="bilder/tyv.png" width="30px" heigh="30px">
               <p style="vertical-align: text-top;">Samle powerups!</p>
             <!--http://www.johnwonnacott.co.uk/3D.html?id=62, bilde av piltaster-->
             <!--https://www.techonthenet.com/clipart/keyboard/space_key_s.php, bilde av spacebar-->
+          </div>
 
 
           </div>
@@ -108,27 +131,9 @@
     <footer>
       <div class="container">
         <p>&copy; Gruppe 27 IDRI. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Side1</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Side2</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Side3</a>
-          </li>
-        </ul>
       </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom CSS -->
-    <script src="js/new-age.min.js"></script>
 
     <!-- <iframe src="backgroundmusic.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
 
@@ -136,24 +141,24 @@
   vil spillet få godkjennelse til å autoplaye en bakgrunnsmusikk. Bakgrunnsmusikken fungerer i Firefox og Chrome.
     Spillet fungerer derimot ikke i Edge, det er flere funksjoner som ikke fungerer i Edge. -->
 
-    <audio autoplay loop id="music">
+    <audio loop id="music">
       <source src="backgroundmusic2.mp3" type="audio/mp3">
-        <source src="backgroundmusic.wav" type="audio/wav">
+      <source src="backgroundmusic.wav" type="audio/wav">
+        <source src="backgroundmusic.ogg" type="audio/ogg">
     </audio>
     <!-- https://www.dl-sounds.com/royalty-free/off-limits/ -->
     <script src="script.js">
     </script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom CSS -->
-    <script src="js/new-age.min.js"></script>
 
-  <div id="scoreInput">
-    <h1> Hall of lame: </h1></br>
-  </div>
-  <button id="muteBtn" onclick="toggleMute()">&#128266;</button>
-  </body>
-</html>
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom CSS -->
+        <script src="js/new-age.min.js"></script>
+
+
+      </body>
+
+    </html>
