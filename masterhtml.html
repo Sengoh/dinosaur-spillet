@@ -706,6 +706,8 @@
             input.setAttribute("style", "width:100px;")
             input.setAttribute("autofocus", "")
             input.setAttribute("placeholder", "Playername")
+            input.setAttribute("id", "inp")
+            btn.setAttribute("id", "btn")
             // input.focus();
             let pressed = false;
             btn.addEventListener('click', function() {
@@ -718,7 +720,7 @@
             function saveInput(evt){
               if(evt.keyCode == 32 || pressed == true) {
               console.log("running saveinput")
-              if (input.value.length >= 1) {
+              if (input.value.length >= 1) { //Validerer at skjemaet ikke er tomt, og sletter hele boksen i tilfelle spilleren ikke vil lagre sin highscore.
               let scoreTracker = {
                 name: [],
                 score: []
@@ -734,8 +736,8 @@
               scoreTracker.score = "";
               highScoreField = false;
               console.log(input, btn);
-              input.remove(0);
-              btn.remove(0);
+              document.getElementById("inp").remove(0);
+              document.getElementById("btn").remove(0);
               input.value = "";
               console.log(input, btn);
             } else {
