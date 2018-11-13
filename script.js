@@ -593,7 +593,7 @@ function newHighscore() {
     reset1 = true;
 
     function saveInput(evt) {
-      if (evt.keyCode == 32 || pressed == true || evt.keyCode == 13) {
+      if (evt.keyCode == 32 || evt.keyCode == 13 || pressed == true) {
         console.log("running saveinput");
         if (input.value.length >= 1) {
           //Validerer at skjemaet ikke er tomt, og sletter hele boksen i tilfelle spilleren ikke vil lagre sin highscore.
