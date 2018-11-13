@@ -459,14 +459,11 @@ myGameArea.canvas.onclick = e => {
     y: e.clientY - myGameArea.canvas.offsetTop
   };
   console.log(pos.x + ", " + pos.y);
-  if (
-    pos.x >= muter.x &&
-    pos.x <= muter.x + muter.width &&
-    (pos.y >= muter.y && pos.y <= muter.y + muter.height)
-  ) {
+  if ((pos.x >= muter.x &&  pos.x <= muter.x + muter.width) && (pos.y >= muter.y && pos.y <= muter.y + muter.height)) {
     console.log(muter.color);
     toggleMute();
   }
+  console.log(muter.x,muter.y);
 };
 
 let spawnRate = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
