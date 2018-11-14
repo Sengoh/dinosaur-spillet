@@ -70,7 +70,6 @@ var myGameArea = {
     } else {
       this.canvas.style.marginLeft = 0;
     }
-    console.log(window.innerHeight);
     this.canvas.style.marginRight = "auto";
     this.canvas.style.display = "block";
     //this.canvas.style.border = "1px solid black";
@@ -80,17 +79,15 @@ var myGameArea = {
     this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
     document.getElementById("music").play(); //Starter musikken til spillet
-    console.log(this.canvas.width);
     //Definerer egenskaper til highscore listen
     document.getElementById("scoreInput").style.marginTop =
       -myGameArea.canvas.clientHeight + "px";
     document.getElementById("scoreInput").style.height =
-    myGameArea.canvas.clientHeight + "px";
+      myGameArea.canvas.clientHeight + "px";
     document.getElementById("music").volume = 0.5;
   },
   stop: function() {
     // Stopper
-    console.log("Stopp");
     powerMelding = "";
     clearInterval(this.interval); // Stopper updateGameArea
     clearInterval(this.objInterval);
@@ -401,14 +398,10 @@ function updateGameArea() {
       mySpawnedPowerUps[i].update();
       if (mySpawnedPowerUps[i].x < -100) {
         mySpawnedPowerUps[i] = "";
-        console.log("nani the fuck");
       }
       //Det som skjer dersom spillfiguren plukker opp en powerup
       if (myGamePiece.pickUp(mySpawnedPowerUps[i])) {
-        console.log(myGamePiece.image.style.opacity);
         var currentPowerup = parseInt(mySpawnedPowerUps[i].powerup);
-        console.log(currentPowerup);
-        console.log(mySpawnedPowerUps[i]);
         myPowerUps[0][currentPowerup]();
         if (mySpawnedPowerUps[i].powerup == 0) {
           powerMelding = "Boo, du er udødelig i 5 sekunder!";
@@ -444,7 +437,6 @@ function updateGameArea() {
         highscore = score;
         newHighscore();
       }
-      console.log(score, highscore);
       text.font = "24px Arial";
       text.fillStyle = "#FDC949";
       text.strokeStyle = "black";
@@ -463,7 +455,6 @@ function updateGameArea() {
     myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.png)";
     if (light) {
       lightInterval = setInterval(randomLighting, 1000);
-      console.log("sfg");
     }
     light = false;
   }
@@ -477,7 +468,6 @@ function randomLighting() {
   let spawnRate =
     Math.random() < 0.8 ? Math.floor(Math.random() * (6 - 4) + 4) * 1000 : 50;
   window.setTimeout(startLight, spawnRate);
-  console.log(spawnRate);
 }
 function startLight() {
   myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
@@ -487,7 +477,6 @@ function startLight() {
     myGameArea.canvas.width,
     myGameArea.canvas.height
   );
-  console.log("re e");
 }
 var muter = new component(20, 20, "bilder/speaker.png", 10, 10, "image"); //Lager bilde for  mute-knapp
 
@@ -505,7 +494,6 @@ myGameArea.canvas.onclick = e => {
   ) {
     toggleMute();
   }
-  console.log(muter.x, muter.y);
 };
 
 let spawnRateHard = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
@@ -520,8 +508,7 @@ function randomTimer() {
 
   let spawnRate = (Math.random() * (4.3 - 3.2) + 3.2) * 1000;
   // spawnRate = (Math.floor(Math.random() * (3)) + 3);
-  console.log("Spawnrate " + spawnRate);
-  console.log("testytest: " + spawnRate);
+  console.log("Spawnrate: " + spawnRate);
 
   variabel = spawnRate;
 
@@ -571,7 +558,6 @@ function spawnObstacle() {
 function randomPowerup() {
   // Definerer hvor ofte en powerup skal spawne
   let spawnRate = (Math.random() * (15 - 10) + 10) * 1000;
-  console.log("Spawnrate " + spawnRate);
   window.setTimeout(spawnPowerup, spawnRate);
 }
 
@@ -579,7 +565,6 @@ function spawnPowerup() {
   // Spawner powerups
   var powerup = parseInt(Math.floor(Math.random() * myPowerUps[0].length));
   let hoyde = Math.floor(Math.random() * (800 - 200) + 200);
-  console.log(powerup);
   mySpawnedPowerUps.push(
     new component(60, 60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
   );
@@ -627,17 +612,14 @@ function newHighscore() {
 
     function saveInput(evt) {
       if (evt.keyCode == 32 || evt.keyCode == 13 || pressed == true) {
-        console.log("running saveinput");
         if (input.value.length >= 1) {
           //Validerer at skjemaet ikke er tomt, og sletter hele boksen i tilfelle spilleren ikke vil lagre sin highscore.
           let scoreTracker = {
             name: [],
             score: []
           };
-          console.log("Button clicked");
           scoreTracker.name.push(input.value);
           scoreTracker.score.push(score);
-          console.log(scoreTracker.name, scoreTracker.score);
           var scoreinput = document.getElementById("scoreInput");
           var text =
             scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
