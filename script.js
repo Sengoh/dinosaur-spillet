@@ -30,12 +30,19 @@ window.onload = function() {
   };
 };
 window.onresize = function(event) {
-  if(window.innerWidth <= 1500) {
+  //Funksjon for responsivt design
+  if (window.innerWidth <= 1450) {
+    //Sjekker bredden på vinduet for å bestmme plasseringen til canvaset
     myGameArea.canvas.style.marginLeft = "0px";
   } else {
     myGameArea.canvas.style.marginLeft = "auto";
   }
-}
+  //Endrer egenskaper til highscore listen
+  document.getElementById("scoreInput").style.marginTop =
+    -myGameArea.canvas.clientHeight + "px";
+  document.getElementById("scoreInput").style.height =
+    myGameArea.canvas.clientHeight + "px";
+};
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
@@ -72,8 +79,13 @@ var myGameArea = {
     this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
     this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
-    document.getElementById("music").play();
+    document.getElementById("music").play(); //Starter musikken til spillet
     console.log(this.canvas.width);
+    //Definerer egenskaper til highscore listen
+    document.getElementById("scoreInput").style.marginTop =
+      -myGameArea.canvas.clientHeight + "px";
+    document.getElementById("scoreInput").style.height =
+      myGameArea.canvas.clientHeight + "px";
   },
   stop: function() {
     // Stopper
@@ -258,7 +270,7 @@ function component(width, height, color, x, y, type, powerup) {
     if (crouched) {
       if (this.y == 480) {
         if (this.type == "image") {
-          this.image.src = "bilder/steinbilcrouch2kvadrat.png";
+          this.image.src = "bilder/steinbilcrouch2.png";
         }
         this.height = 30;
         this.y = this.y + 30;
@@ -317,7 +329,6 @@ function component(width, height, color, x, y, type, powerup) {
     ) {
       pickedup = false;
     }
-    //console.log(myright + ", " + otherleft);
     return pickedup;
     //return crash;
     //  }
@@ -462,10 +473,10 @@ let light = true;
 var lightInterval;
 function randomLighting() {
   // Definerer hvor ofte en powerup skal spawne
-  let test2 =
+  let spawnRate =
     Math.random() < 0.8 ? Math.floor(Math.random() * (6 - 4) + 4) * 1000 : 50;
-  window.setTimeout(startLight, test2);
-  console.log(test2);
+  window.setTimeout(startLight, spawnRate);
+  console.log(spawnRate);
 }
 function startLight() {
   myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
@@ -491,35 +502,31 @@ myGameArea.canvas.onclick = e => {
     pos.x <= muter.x + muter.width &&
     (pos.y >= muter.y && pos.y <= muter.y + muter.height)
   ) {
-    console.log(muter.color);
     toggleMute();
   }
   console.log(muter.x, muter.y);
 };
 
-let spawnRate = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
+let spawnRateHard = 0; // Startverdi for en variabel som definerer hvor ofte obstacles skal spawne
 let variabel;
 var myTiles = [
   // Array som lagrer bildene for obstacles
 ];
-var myTiles = [
-  // Annen array som lagrer bildene for obstacles
-];
 var tilesNr = 0; // Hvor mange obstacles som er laget
 //var startSpawn = setInterval(randomTimer, 1899) // Definerer hvor stort mellomrom det er mellom to obstacles
 function randomTimer() {
-  spawnRate = Math.floor(Math.random() * (3.2 - 2.7) + 2.7) * 1000;
+  spawnRateHard = Math.floor(Math.random() * (3.2 - 2.7) + 2.7) * 1000;
 
-  let test = (Math.random() * (4.3 - 3.2) + 3.2) * 1000;
+  let spawnRate = (Math.random() * (4.3 - 3.2) + 3.2) * 1000;
   // spawnRate = (Math.floor(Math.random() * (3)) + 3);
   console.log("Spawnrate " + spawnRate);
-  console.log("testytest: " + test);
+  console.log("testytest: " + spawnRate);
 
-  variabel = test;
+  variabel = spawnRate;
 
   if (score > 2000) {
     // Obstacles spawner oftere når man kommer over 2000 poeng
-    variabel = spawnRate;
+    variabel = spawnRateHard;
   }
 
   window.setTimeout(spawnObstacle, variabel);
@@ -562,9 +569,9 @@ function spawnObstacle() {
 
 function randomPowerup() {
   // Definerer hvor ofte en powerup skal spawne
-  let test2 = (Math.random() * (15 - 10) + 10) * 1000;
+  let spawnRate = (Math.random() * (15 - 10) + 10) * 1000;
   console.log("Spawnrate " + spawnRate);
-  window.setTimeout(spawnPowerup, test2);
+  window.setTimeout(spawnPowerup, spawnRate);
 }
 
 function spawnPowerup() {
@@ -592,7 +599,7 @@ function welcomeText() {
 function newHighscore() {
   // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
   let highScoreField = false;
-  if (score >= highscore && score != 0 && highScoreField == false) {
+  if (score >= highscore && score >= 500 && highScoreField == false) {
     highScoreField = true;
     var input = document.createElement("input");
     var btn = document.createElement("button");
