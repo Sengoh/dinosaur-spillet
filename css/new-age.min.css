@@ -137,7 +137,7 @@ section h2 {
 .navbar-toggler {
   background-color: #f0f0f0;
 }
-#mainNav.navbar-light .navbar-toggler{
+#mainNav.navbar-light .navbar-toggler {
   border-color: #f7cc52;
 }
 header.masthead {
@@ -332,8 +332,9 @@ footer ul li a:hover {
   object-fit: cover;
 }
 canvas {
-  border: 1px solid #d3d3d3;
-  background-color: #f1f1f1;
+  /* border: 1px solid #d3d3d3; */
+  /* background-color: #f1f1f1; */
+  margin-top: 10px;
   background-image: url("../bilder/bakgrunnsbilde1.png");
   background-repeat: no-repeat;
   /* background-size: 100% 100%; */
