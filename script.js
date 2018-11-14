@@ -31,7 +31,7 @@ window.onload = function() {
 };
 window.onresize = function(event) {
   //Funksjon for responsivt design
-  if (window.innerWidth <= 1100) {
+  if (window.innerWidth <= 1450) {
     //Sjekker bredden på vinduet for å bestmme plasseringen til canvaset
     myGameArea.canvas.style.marginLeft = "0px";
   } else {
