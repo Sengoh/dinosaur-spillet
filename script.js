@@ -30,11 +30,14 @@ window.onload = function() {
   };
 };
 window.onresize = function(event) {
-  if(window.innerWidth <= 1500) {
+  if(window.innerWidth <= 1100) {
     myGameArea.canvas.style.marginLeft = "0px";
   } else {
     myGameArea.canvas.style.marginLeft = "auto";
   }
+  console.log(myGameArea.canvas.clientHeight);
+  document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
+  document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
 }
 // Starter spillet, definerer objekter
 function startGame() {
@@ -74,6 +77,8 @@ var myGameArea = {
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
     document.getElementById("music").play();
     console.log(this.canvas.width);
+    document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
+    document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
   },
   stop: function() {
     // Stopper

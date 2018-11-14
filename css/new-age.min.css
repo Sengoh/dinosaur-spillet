@@ -345,9 +345,9 @@ canvas {
 }
 #scoreInput {
   width: 250px;
-  margin-top: -500px;
   margin-right: 0px;
   float: right;
   display: none;
   position: relative;
+  overflow-y: auto;
 }
