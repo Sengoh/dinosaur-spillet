@@ -671,4 +671,3 @@ function toggleMute() {
     muter.image.src = "bilder/speaker.png";
   }
 }
-//test
