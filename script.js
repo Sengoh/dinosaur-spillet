@@ -460,7 +460,7 @@ function updateGameArea() {
   if (score >= 1000 && score < 2000) {
     myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
   } else if (score >= 2000) {
-    myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
+    myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.png)";
     if (light) {
       lightInterval = setInterval(randomLighting, 1000);
       console.log("sfg");
