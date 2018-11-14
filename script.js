@@ -105,6 +105,7 @@ var myGameArea = {
     spook = false;
     dobbel = false;
     clearInterval(lightInterval);
+    currentLevel = 0;
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clearer canvasen/spillomrdet
@@ -339,13 +340,20 @@ function component(width, height, color, x, y, type, powerup) {
     //  }
   };
 }
+let currentLevel = 0;
+let level = "";
 //Funksjonen som oppdaterer canvasen
 function updateGameArea() {
   var lastTry = true;
   myGameArea.clear();
   myGamePiece.newPos();
   myGamePiece.update();
-  welcomeText(); //Tekst som kommer når spillet starter
+  if(currentLevel == 0) {
+    level = "Level 1: Midtbyen";
+    textX = 200;
+    currentLevel++;
+  }
+  levelText(level); //Tekst som kommer når spilleren når nytt nivå
   text.font = "24px Arial";
   text.fillStyle = "#FDC949";
   text.strokeStyle = "black";
@@ -458,17 +466,28 @@ function updateGameArea() {
   }
   if (score >= 1000 && score < 2000) {
     myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
+    level = "Level 2: Høgskoleparken";
+    if(currentLevel == 1) {
+      textX = 200
+      currentLevel++;
+    }
   } else if (score >= 2000) {
     myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.png)";
     if (light) {
       lightInterval = setInterval(randomLighting, 1000);
     }
     light = false;
+    level = "Level 3: Gløshaugen";
+    if(currentLevel == 2) {
+      textX = 200;
+      currentLevel++;
+    }
   }
 
   muter.update();
 }
 let light = true;
+
 var lightInterval;
 function randomLighting() {
   // Definerer hvor ofte en powerup skal spawne
@@ -572,15 +591,20 @@ function spawnPowerup() {
     new component(60, 60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
   );
 }
+
 var textX = 200;
-function welcomeText() {
+function levelText(level) {
   // Tekst som kommer når spillet starter
   y = 50;
   textX -= 2;
   text.font = "30px Arial";
-  text.fillStyle = "#562a73";
+  text.fillStyle = "#FDC949";
+  text.strokeStyle = "black";
+  ctx.lineWidth = 5;
+  text.strokeText(level, textX, 125);
+  text.fillText(level, textX, 125);
   text.fillText(
-    "Klarer du å hjelpe Stein med å få det gylne lønnspålegget?",
+    level,
     textX,
     125
   );
