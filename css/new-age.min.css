@@ -116,22 +116,22 @@ section h2 {
   }
   #mainNav.navbar-shrink {
     border-color: rgba(34, 34, 34, 0.1);
-    background-color: #fff;
+    background-color: #222;
   }
   #mainNav.navbar-shrink .navbar-brand {
-    color: #e0bdbd;
+    color: #f7cc52;
   }
   #mainNav.navbar-shrink .navbar-brand:focus,
   #mainNav.navbar-shrink .navbar-brand:hover {
-    color: #fdcc52;
+    color: #fff;
   }
   #mainNav.navbar-shrink .navbar-nav > li > a,
   #mainNav.navbar-shrink .navbar-nav > li > a:focus {
-    color: #e0bdbd;
+    color: #f7cc52;
   }
   #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover,
   #mainNav.navbar-shrink .navbar-nav > li > a:hover {
-    color: #fdcc52;
+    color: #fff;
   }
 }
 header.masthead {
