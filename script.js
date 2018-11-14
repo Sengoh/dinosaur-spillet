@@ -29,16 +29,20 @@ window.onload = function() {
     startGame();
   };
 };
-window.onresize = function(event) { //Funksjon for responsivt design
-  if(window.innerWidth <= 1100) { //Sjekker bredden på vinduet for å bestmme plasseringen til canvaset
+window.onresize = function(event) {
+  //Funksjon for responsivt design
+  if (window.innerWidth <= 1100) {
+    //Sjekker bredden på vinduet for å bestmme plasseringen til canvaset
     myGameArea.canvas.style.marginLeft = "0px";
   } else {
     myGameArea.canvas.style.marginLeft = "auto";
   }
   //Endrer egenskaper til highscore listen
-  document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
-  document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
-}
+  document.getElementById("scoreInput").style.marginTop =
+    -myGameArea.canvas.clientHeight + "px";
+  document.getElementById("scoreInput").style.height =
+    myGameArea.canvas.clientHeight + "px";
+};
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
@@ -78,8 +82,10 @@ var myGameArea = {
     document.getElementById("music").play(); //Starter musikken til spillet
     console.log(this.canvas.width);
     //Definerer egenskaper til highscore listen
-    document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
-    document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
+    document.getElementById("scoreInput").style.marginTop =
+      -myGameArea.canvas.clientHeight + "px";
+    document.getElementById("scoreInput").style.height =
+      myGameArea.canvas.clientHeight + "px";
   },
   stop: function() {
     // Stopper
@@ -593,7 +599,7 @@ function welcomeText() {
 function newHighscore() {
   // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
   let highScoreField = false;
-  if (score >= highscore && score != 0 && highScoreField == false) {
+  if (score >= highscore && score >= 500 && highScoreField == false) {
     highScoreField = true;
     var input = document.createElement("input");
     var btn = document.createElement("button");

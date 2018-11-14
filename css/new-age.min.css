@@ -315,7 +315,7 @@ footer ul li a:hover {
 }
 .container > div {
   flex: 1; /*grow*/
-  padding-top: 00px;
+  padding-top: 0px;
 }
 
 .co {
