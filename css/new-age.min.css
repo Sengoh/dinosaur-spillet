@@ -330,13 +330,10 @@ canvas {
   background-color: #f1f1f1;
   background-image: url("../bilder/bakgrunnsbilde1.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
+  background-size: cover;
   padding-left: 1em;
-<<<<<<< HEAD
-  width: 70%;
-=======
   width: 65%;
->>>>>>> e04e2d46d364ea89c75baabd5577f81c33578917
 }
 #steinspin {
   transform-origin: 50% 50%;

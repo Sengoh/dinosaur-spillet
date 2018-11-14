@@ -264,7 +264,7 @@ function component(width, height, color, x, y, type, powerup) {
     if (crouched) {
       if (this.y == 480) {
         if (this.type == "image") {
-          this.image.src = "bilder/steinbilcrouch2kvadrat.png";
+          this.image.src = "bilder/steinbilcrouch2.png";
         }
         this.height = 30;
         this.y = this.y + 30;
