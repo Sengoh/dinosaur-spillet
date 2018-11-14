@@ -66,12 +66,14 @@ var myGameArea = {
     console.log(window.innerHeight);
     this.canvas.style.marginRight = "auto";
     this.canvas.style.display = "block";
+    //this.canvas.style.border = "1px solid black";
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
     this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
     document.getElementById("music").play();
+    console.log(this.canvas.width);
   },
   stop: function() {
     // Stopper
