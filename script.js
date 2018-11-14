@@ -85,7 +85,8 @@ var myGameArea = {
     document.getElementById("scoreInput").style.marginTop =
       -myGameArea.canvas.clientHeight + "px";
     document.getElementById("scoreInput").style.height =
-      myGameArea.canvas.clientHeight + "px";
+    myGameArea.canvas.clientHeight + "px";
+    document.getElementById("music").volume = 0.5;
   },
   stop: function() {
     // Stopper
@@ -667,7 +668,7 @@ function toggleMute() {
   // music.setAttribute("volume","0.0")
   if (counter >= 2) {
     counter = 0;
-    music.volume = 1.0;
+    music.volume = 0.5;
     muter.image.src = "bilder/speaker.png";
   }
 }
