@@ -315,7 +315,7 @@ footer ul li a:hover {
 }
 .container > div {
   flex: 1; /*grow*/
-  padding-top: 50px;
+  padding-top: 00px;
 }
 
 .co {
@@ -332,7 +332,7 @@ canvas {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding-left: 1em;
-  width: 50%;
+  width: 65%;
 }
 #steinspin {
   transform-origin: 50% 50%;
