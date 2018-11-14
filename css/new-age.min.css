@@ -332,11 +332,7 @@ canvas {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding-left: 1em;
-<<<<<<< HEAD
-  width: 70%;
-=======
   width: 65%;
->>>>>>> e04e2d46d364ea89c75baabd5577f81c33578917
 }
 #steinspin {
   transform-origin: 50% 50%;
@@ -348,7 +344,7 @@ canvas {
   }
 }
 #scoreInput {
-  width: 300px;
+  width: 250px;
   margin-right: 0px;
   float: right;
   display: none;
