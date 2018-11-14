@@ -56,7 +56,7 @@ function startGame() {
   myGameArea.start();
   light = true;
 }
-
+var test = true;
 // Spillområdet
 var myGameArea = {
   canvas: document.createElement("canvas"),
@@ -77,7 +77,15 @@ var myGameArea = {
     this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
     this.objInterval = setInterval(randomTimer, 1899); // Starter å spawne hindere
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
-    document.getElementById("music").play(); //Starter musikken til spillet
+    let music = document.getElementById("music");
+    music.play();
+    if (mute == false) { //Sjekker om musikket er dempet eller ikke
+      music.muted = false;
+      muter.image.src = "bilder/speaker.png";
+    } else if (mute) {
+      music.muted = true;
+      muter.image.src = "bilder/mute.png";
+    }
     //Definerer egenskaper til highscore listen
     document.getElementById("scoreInput").style.marginTop =
       -myGameArea.canvas.clientHeight + "px";
@@ -632,15 +640,15 @@ function newHighscore() {
     }
   }
 }
-let counter = 0;
+var mute = false;
 function toggleMute() {
-  counter++;
   let music = document.getElementById("music");
-  music.volume = 0.0;
-  muter.image.src = "bilder/mute.png";
-  if (counter >= 2) {
-    counter = 0;
-    music.volume = 0.5;
+  mute = !mute;
+  if (mute == false) {
+    music.muted = false;
     muter.image.src = "bilder/speaker.png";
+  } else if (mute) {
+    music.muted = true;
+    muter.image.src = "bilder/mute.png";
   }
 }
