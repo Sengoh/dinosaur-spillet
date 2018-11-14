@@ -397,7 +397,7 @@ function updateGameArea() {
         console.log(mySpawnedPowerUps[i]);
         myPowerUps[0][currentPowerup]();
         if (mySpawnedPowerUps[i].powerup == 0) {
-          powerMelding = "Boo!";
+          powerMelding = "Boo, du er udødelig i 5 sekunder!";
           spook = true;
         } else if (mySpawnedPowerUps[i].powerup == 1) {
           powerMelding = "x2 Poeng!";
