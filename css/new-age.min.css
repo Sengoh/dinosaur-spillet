@@ -315,7 +315,7 @@ footer ul li a:hover {
 }
 .container > div {
   flex: 1; /*grow*/
-  padding-top: 00px;
+  padding-top: 0px;
 }
 
 .co {
@@ -344,7 +344,7 @@ canvas {
   }
 }
 #scoreInput {
-  width: 250px;
+  width: 300px;
   margin-right: 0px;
   float: right;
   display: none;

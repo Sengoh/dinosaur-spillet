@@ -30,15 +30,17 @@ window.onload = function() {
   };
 };
 window.onresize = function(event) {
-  if(window.innerWidth <= 1100) {
+  if (window.innerWidth <= 1100) {
     myGameArea.canvas.style.marginLeft = "0px";
   } else {
     myGameArea.canvas.style.marginLeft = "auto";
   }
   console.log(myGameArea.canvas.clientHeight);
-  document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
-  document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
-}
+  document.getElementById("scoreInput").style.marginTop =
+    -myGameArea.canvas.clientHeight + "px";
+  document.getElementById("scoreInput").style.height =
+    myGameArea.canvas.clientHeight + "px";
+};
 // Starter spillet, definerer objekter
 function startGame() {
   myGamePiece = new component(
@@ -77,8 +79,10 @@ var myGameArea = {
     this.powInterval = setInterval(randomPowerup, 14899); // Starter å spawne powerups
     document.getElementById("music").play();
     console.log(this.canvas.width);
-    document.getElementById("scoreInput").style.marginTop = -(myGameArea.canvas.clientHeight) + "px";
-    document.getElementById("scoreInput").style.height = (myGameArea.canvas.clientHeight) + "px";
+    document.getElementById("scoreInput").style.marginTop =
+      -myGameArea.canvas.clientHeight + "px";
+    document.getElementById("scoreInput").style.height =
+      myGameArea.canvas.clientHeight + "px";
   },
   stop: function() {
     // Stopper
@@ -597,7 +601,7 @@ function welcomeText() {
 function newHighscore() {
   // Logger score til spiller, og sjekker om denne er bedre enn gjeldende highscore. Hvis den er større vil den spørre om navnet til spilleren og logge scoren og navn til spilleren i Hall of Fame
   let highScoreField = false;
-  if (score >= highscore && score != 0 && highScoreField == false) {
+  if (score >= highscore && score >= 500 && highScoreField == false) {
     highScoreField = true;
     var input = document.createElement("input");
     var btn = document.createElement("button");
