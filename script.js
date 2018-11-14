@@ -85,7 +85,8 @@ var myGameArea = {
     document.getElementById("scoreInput").style.marginTop =
       -myGameArea.canvas.clientHeight + "px";
     document.getElementById("scoreInput").style.height =
-      myGameArea.canvas.clientHeight + "px";
+    myGameArea.canvas.clientHeight + "px";
+    document.getElementById("music").volume = 0.5;
   },
   stop: function() {
     // Stopper
@@ -459,7 +460,7 @@ function updateGameArea() {
   if (score >= 1000 && score < 2000) {
     myGameArea.canvas.style.backgroundImage = "url(bilder/level2.png)";
   } else if (score >= 2000) {
-    myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.jpg)";
+    myGameArea.canvas.style.backgroundImage = "url(bilder/NTNU.png)";
     if (light) {
       lightInterval = setInterval(randomLighting, 1000);
       console.log("sfg");
@@ -667,7 +668,7 @@ function toggleMute() {
   // music.setAttribute("volume","0.0")
   if (counter >= 2) {
     counter = 0;
-    music.volume = 1.0;
+    music.volume = 0.5;
     muter.image.src = "bilder/speaker.png";
   }
 }
