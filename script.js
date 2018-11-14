@@ -72,7 +72,6 @@ var myGameArea = {
     }
     this.canvas.style.marginRight = "auto";
     this.canvas.style.display = "block";
-    //this.canvas.style.border = "1px solid black";
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.interval = setInterval(updateGameArea, 20); // Starter updateGameArea
@@ -128,7 +127,7 @@ var myPowerUps = [
       console.log("500 poeng gis");
       score += 500;
     },
-    //Olsø
+    //Tyven
     function() {
       console.log("250 poeng tas");
       score -= 250;
@@ -502,12 +501,10 @@ var myTiles = [
   // Array som lagrer bildene for obstacles
 ];
 var tilesNr = 0; // Hvor mange obstacles som er laget
-//var startSpawn = setInterval(randomTimer, 1899) // Definerer hvor stort mellomrom det er mellom to obstacles
 function randomTimer() {
   spawnRateHard = Math.floor(Math.random() * (3.2 - 2.7) + 2.7) * 1000;
 
   let spawnRate = (Math.random() * (4.3 - 3.2) + 3.2) * 1000;
-  // spawnRate = (Math.floor(Math.random() * (3)) + 3);
   console.log("Spawnrate: " + spawnRate);
 
   variabel = spawnRate;
@@ -553,8 +550,6 @@ function spawnObstacle() {
   }
 }
 
-//setInterval(randomPowerup, 14899)
-
 function randomPowerup() {
   // Definerer hvor ofte en powerup skal spawne
   let spawnRate = (Math.random() * (15 - 10) + 10) * 1000;
@@ -593,15 +588,12 @@ function newHighscore() {
     btn.appendChild(btntxt);
     document.getElementById("inputName").appendChild(input);
     document.getElementById("inputName").appendChild(btn);
-    // document.body.appendChild(input);
-    // document.body.appendChild(btn)
     input.setAttribute("type", "text");
     input.setAttribute("style", "width:100px;");
     input.setAttribute("autofocus", "");
     input.setAttribute("placeholder", "Playername");
     input.setAttribute("id", "inp");
     btn.setAttribute("id", "btn");
-    // input.focus();
     let pressed = false;
     btn.addEventListener("click", function() {
       pressed = true;
@@ -624,7 +616,6 @@ function newHighscore() {
           var text =
             scoreTracker.name + ", med score " + scoreTracker.score + "!<br />";
           document.getElementById("scoreInput").innerHTML += text;
-          // scoreInput.parentNode.insertBefore(text, scoreInput);
           scoreTracker.name = "";
           scoreTracker.score = "";
           highScoreField = false;
@@ -647,7 +638,6 @@ function toggleMute() {
   let music = document.getElementById("music");
   music.volume = 0.0;
   muter.image.src = "bilder/mute.png";
-  // music.setAttribute("volume","0.0")
   if (counter >= 2) {
     counter = 0;
     music.volume = 0.5;
