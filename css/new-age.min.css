@@ -134,6 +134,12 @@ section h2 {
     color: #fff;
   }
 }
+.navbar-toggler {
+  background-color: #f0f0f0;
+}
+#mainNav.navbar-light .navbar-toggler{
+  border-color: #f7cc52;
+}
 header.masthead {
   position: relative;
   width: 100%;
