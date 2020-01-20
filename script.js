@@ -496,13 +496,15 @@ function randomLighting() {
   window.setTimeout(startLight, spawnRate);
 }
 function startLight() {
-  myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
-  myGameArea.context.fillRect(
-    0,
-    0,
-    myGameArea.canvas.width,
-    myGameArea.canvas.height
-  );
+  if (score > 2500) {
+    myGameArea.context.fillStyle = "rgba(255,255,255,0.25)";
+    myGameArea.context.fillRect(
+     0,
+     0,
+     myGameArea.canvas.width,
+     myGameArea.canvas.height
+    );
+  }
 }
 var muter = new component(20, 20, "bilder/speaker.png", 10, 10, "image"); //Lager bilde for  mute-knapp
 
