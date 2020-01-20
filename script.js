@@ -586,7 +586,7 @@ function randomPowerup() {
 function spawnPowerup() {
   // Spawner powerups
   var powerup = parseInt(Math.floor(Math.random() * myPowerUps[0].length));
-  let hoyde = Math.floor(Math.random() * (800 - 200) + 200);
+  let hoyde = Math.floor(Math.random() * (540 - 100) + 100);
   mySpawnedPowerUps.push(
     new component(60, 60, myPowerUps[1][powerup], 960, hoyde, "image", powerup)
   );
